@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBSITE HỌC TIẾNG ANH TẠO BỞI NGUYỄN CHÍ DỰ</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🇻🇳 Học Tiếng Anh Cùng Chí Dự 🇻🇳</h1>
+            <p class="subtitle">Chơi có gặp bug vui lòng bấm nút REPORT bên dưới nha ❤️</p>
+        </header>
+
+        <div class="controls">
+            <button id="lang-btn">🌍 Ngôn Ngữ</button>
+            <button id="mode-btn">⚡ Mode: Dễ</button>
+            <button id="info-btn">ℹ️ Thông Tin</button>
+            <button id="report-btn" onclick="window.open('https://github.com/[YOUR_USERNAME]/[YOUR_REPO]/issues', '_blank')">🐛 Report Bug</button>
+        </div>
+
+        <div id="start-screen">
+            <h2 id="welcome-title">Chào mừng bạn đến với quiz học ngoại ngữ!</h2>
+            <button id="start-btn">Bắt Đầu Học 📚</button>
+        </div>
+
+        <div id="quiz-screen" class="hidden">
+            <p id="question"></p>
+            <button id="speak-btn">🔊 Nghe Phát Âm</button>
+            <div id="options"></div>
+
+            <div class="quiz-controls">
+                <button id="restart-btn">🔄 Chơi Lại</button>
+                <button id="reset-score-btn">🗑️ Reset Điểm</button>
+                <button id="quit-btn">✖️ Từ Bỏ</button>
+                <button id="next-btn" disabled>Tiếp Theo →</button>
+            </div>
+
+            <div id="result"></div>
+            <p id="score">Điểm: 0</p>
+        </div>
+
+        <footer>
+            <p>Made in VN 🇻🇳♥️</p>
+            <p>Made by: <strong>Nguyễn Chí Dự</strong> (OWNER)</p>
+        </footer>
+    </div>
+
+    <!-- Modal xác nhận ngôn ngữ -->
+    <div id="lang-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Chọn Ngôn Ngữ</h3>
+            <button data-lang="vi">🇻🇳 Tiếng Việt</button>
+            <button data-lang="en">🇬🇧 English</button>
+            <button id="close-lang">Đóng</button>
+        </div>
+    </div>
+
+    <!-- Modal thông tin -->
+    <div id="info-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>ℹ️ Thông Tin & Update</h3>
+            <p><strong>Phiên bản:</strong> 2.0 (04/01/2026)</p>
+            <p><strong>Tác giả:</strong> Nguyễn Chí Dự 🇻🇳</p>
+            <h4>Cập nhật mới:</h4>
+            <ul>
+                <li>Thêm đa ngôn ngữ (Việt - Anh)</li>
+                <li>5 cấp độ khó + Extreme Mode siêu thử thách</li>
+                <li>Hỗ trợ phát âm bằng Google TTS</li>
+                <li>Giao diện đẹp hơn, thêm hiệu ứng</li>
+                <li>Điểm thưởng +10 mỗi câu đúng</li>
+                <li>Thêm nút Report Bug trực tiếp GitHub</li>
+            </ul>
+            <button id="close-info">Đóng</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+  </html>
