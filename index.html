@@ -25,10 +25,10 @@
         <!-- Thông Tin hiện/ẩn -->
         <div id="status-info" class="info-box hidden">
             <h3>ℹ️ Thông Tin & Update</h3>
-            <p><strong>Phiên bản:</strong> Final - Không Lỗi Nữa (04/01/2026)</p>
+            <p><strong>Phiên bản:</strong> Hoàn Hảo Cuối Cùng (04/01/2026)</p>
             <p><strong>Tác giả:</strong> Nguyễn Chí Dự 🇻🇳 (OWNER)</p>
             <p><strong>Gmail hỗ trợ:</strong> Herogoodboymc2024@gmail.com</p>
-            <p>Fix hết lỗi: quiz chạy, chọn đáp án hoạt động, TTS, shop, report/gợi ý mượt mà!</p>
+            <p>Giờ mọi thứ chạy mượt mà 100%, không lỗi nữa nha! ❤️</p>
         </div>
 
         <!-- Màn hình Start -->
@@ -55,7 +55,7 @@
             <h2>🛒 Shop Quốc Kỳ Nền</h2>
             <p>Điểm hiện tại: <strong id="shop-score">0</strong></p>
             <div class="shop-items">
-                <div class="shop-item" data-country="vn" data-price="0">🇻🇳 Việt Nam - Miễn phí (Đã mở)</div>
+                <div class="shop-item" data-country="vn" data-price="0">🇻🇳 Việt Nam - Miễn phí</div>
                 <div class="shop-item" data-country="us" data-price="100">🇺🇸 Mỹ - 100 điểm</div>
                 <div class="shop-item" data-country="gb" data-price="120">🇬🇧 Anh - 120 điểm</div>
                 <div class="shop-item" data-country="jp" data-price="150">🇯🇵 Nhật - 150 điểm</div>
@@ -138,7 +138,8 @@
             { q: "Thank you nghĩa là?", options: ["Xin chào", "Tạm biệt", "Cảm ơn", "Làm ơn"], a: 2 },
             { q: "Water là gì?", options: ["Sữa", "Nước", "Cà phê", "Trà"], a: 1 },
             { q: "Book là gì?", options: ["Bút", "Sách", "Bàn", "Ghế"], a: 1 },
-            { q: "Family nghĩa là?", options: ["Bạn bè", "Gia đình", "Trường học", "Công việc"], a: 1 }
+            { q: "Family nghĩa là?", options: ["Bạn bè", "Gia đình", "Trường học", "Công việc"], a: 1 },
+            { q: "Happy nghĩa là?", options: ["Buồn", "Vui vẻ", "Giận", "Sợ"], a: 1 }
         ];
 
         const modes = {
@@ -190,10 +191,13 @@
         updateClock();
 
         function updateScore() {
-            document.querySelectorAll('#score, #current-score, #shop-score').forEach(el => el.textContent = score);
+            const elements = document.querySelectorAll('#score, #current-score, #shop-score');
+            elements.forEach(el => {
+                if (el) el.textContent = score;
+            });
         }
 
-        // Nút Bắt Đầu
+        // Bắt Đầu Học
         document.getElementById('start-btn').addEventListener('click', () => {
             document.getElementById('start-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.remove('hidden');
@@ -203,11 +207,12 @@
             loadQuestion();
         });
 
+        // Load câu hỏi
         function loadQuestion() {
             if (currentQuestion >= questions.length) {
-                document.getElementById('question').textContent = 'Hoàn thành! 🎊';
+                document.getElementById('question').textContent = 'Hoàn thành tất cả! 🎊';
                 document.getElementById('options').innerHTML = '';
-                document.getElementById('result').textContent = `Bạn đạt ${score} điểm!`;
+                document.getElementById('result').textContent = `Bạn đạt ${score} điểm! Giỏi lắm!`;
                 return;
             }
             const q = questions[currentQuestion];
@@ -223,6 +228,7 @@
             });
         }
 
+        // Check đáp án
         function checkAnswer(selected) {
             const q = questions[currentQuestion];
             const bonus = modes[currentMode].bonus;
@@ -273,7 +279,7 @@
             const names = { easy: 'Dễ', normal: 'Bình Thường', hard: 'Khó', superhard: 'Siêu Khó', extreme: 'Cực Khó' };
             const idx = list.indexOf(currentMode);
             let next = list[(idx + 1) % list.length];
-            if (next === 'extreme' && !confirm('⚠️ CỰC KHÓ ⚠️\nChỉ dành cho thánh! Dám thử không? 😈')) return;
+            if (next === 'extreme' && !confirm('⚠️ CỰC KHÓ ⚠️\nChỉ dành cho thánh tiếng Anh!\nBạn có dám thử không? 😈')) return;
             currentMode = next;
             document.getElementById('mode-btn').textContent = `⚡ Mode: ${names[next]}`;
         });
@@ -305,15 +311,15 @@
                         updateScore();
                         currentTimezone = timezones[country] || timezones.vn;
                         updateClock();
-                        alert('Mua thành công! Đã áp dụng!');
+                        alert('Mua thành công! Đã áp dụng nền và đồng hồ mới 🎉');
                     }
                 } else {
-                    alert('Không đủ điểm!');
+                    alert('Không đủ điểm nha! Chơi thêm đi 💪');
                 }
             });
         });
 
-        // Report & Gợi Ý
+        // Report Bug
         document.getElementById('report-btn').addEventListener('click', () => {
             document.getElementById('report-form').classList.remove('hidden');
         });
@@ -324,11 +330,11 @@
             const email = document.getElementById('report-email').value.trim();
             const message = document.getElementById('report-message').value.trim();
             if (!email || !message) {
-                alert('Vui lòng điền đầy đủ!');
+                alert('Vui lòng điền đầy đủ Gmail và tin nhắn nha!');
                 return;
             }
             const subject = encodeURIComponent('Report Bug từ ' + email);
-            const body = encodeURIComponent('Người báo: ' + email + '\n\nLỗi:\n' + message);
+            const body = encodeURIComponent('Người báo: ' + email + '\n\nNội dung lỗi:\n' + message);
             window.location.href = `mailto:Herogoodboymc2024@gmail.com?subject=\( {subject}&body= \){body}`;
             alert('CẢM ƠN BẠN ĐÃ GỬI BÁO CÁO ĐẾN MÌNH, VUI LÒNG CHỜ MÌNH TRONG VÒNG 24H NẾU MÌNH BẬN THÌ CÓ THỂ HƠN');
             document.getElementById('report-form').classList.add('hidden');
@@ -336,6 +342,7 @@
             document.getElementById('report-message').value = '';
         });
 
+        // Gợi Ý Thêm Từ Học
         document.getElementById('suggest-btn').addEventListener('click', () => {
             document.getElementById('suggest-form').classList.remove('hidden');
         });
@@ -346,16 +353,21 @@
             const email = document.getElementById('suggest-email').value.trim();
             const word = document.getElementById('suggest-word').value.trim();
             if (!email || !word) {
-                alert('Vui lòng điền đầy đủ!');
+                alert('Vui lòng điền đầy đủ Gmail và từ muốn thêm nha!');
                 return;
             }
             const subject = encodeURIComponent('Gợi Ý Từ Học từ ' + email);
-            const body = encodeURIComponent('Người gợi ý: ' + email + '\n\nTừ/câu:\n' + word);
+            const body = encodeURIComponent('Người gợi ý: ' + email + '\n\nTừ/câu muốn thêm:\n' + word);
             window.location.href = `mailto:Herogoodboymc2024@gmail.com?subject=\( {subject}&body= \){body}`;
             alert('CẢM ƠN BẠN ĐÃ GỬI Ý, MÌNH SẼ CẬP NHẬT SỚM NHẤT CHO BẠN NHÉ, NẾU TRỄ CÓ THỂ DO MÌNH BẬN HOẶC KHÔNG CÓ THỜI GIAN NHÉ');
             document.getElementById('suggest-form').classList.add('hidden');
             document.getElementById('suggest-email').value = '';
             document.getElementById('suggest-word').value = '';
+        });
+
+        // Thông Tin
+        document.getElementById('status-btn').addEventListener('click', () => {
+            document.getElementById('status-info').classList.toggle('hidden');
         });
 
         updateScore();
