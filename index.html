@@ -18,16 +18,17 @@
         <div class="controls">
             <button id="lang-btn">🌍 Ngôn Ngữ</button>
             <button id="mode-btn">⚡ Mode: Dễ</button>
+            <button id="shop-btn">🛒 Shop Quốc Kỳ</button>
             <button id="status-btn">ℹ️ Thông Tin</button>
         </div>
 
         <!-- Thông Tin hiện/ẩn -->
         <div id="status-info" class="info-box hidden">
             <h3>ℹ️ Thông Tin & Update</h3>
-            <p><strong>Phiên bản:</strong> 100% Hoạt Động - Không Lỗi Nút (04/01/2026)</p>
+            <p><strong>Phiên bản:</strong> All Buttons Fixed - 100% Work (04/01/2026)</p>
             <p><strong>Tác giả:</strong> Nguyễn Chí Dự 🇻🇳 (OWNER)</p>
             <p><strong>Gmail hỗ trợ:</strong> Herogoodboymc2024@gmail.com</p>
-            <p>Fix triệt để lỗi bấm nút không phản ứng. Giờ mọi thứ chạy mượt mà!</p>
+            <p>Fix hết lỗi bấm nút không phản ứng. Giờ mọi nút đều chạy mượt!</p>
         </div>
 
         <!-- Màn hình Start -->
@@ -41,7 +42,7 @@
 
         <!-- Màn hình Quiz -->
         <div id="quiz-screen" class="hidden">
-            <p id="question">Ví dụ câu hỏi: "Hello" nghĩa là gì trong tiếng Việt?</p>
+            <p id="question">Ví dụ: "Hello" nghĩa là gì?</p>
             <button id="speak-btn">🔊 Nghe Phát Âm</button>
             <div id="options">
                 <button class="option-btn">Xin chào</button>
@@ -51,6 +52,14 @@
             </div>
             <div id="result"></div>
             <p id="score">Điểm: 0</p>
+        </div>
+
+        <!-- Màn hình Shop (đơn giản) -->
+        <div id="shop-screen" class="hidden">
+            <h2>🛒 Shop Quốc Kỳ (Đang phát triển)</h2>
+            <p>Điểm hiện tại: 0</p>
+            <p>Sắp có quốc kỳ đẹp để mua bằng điểm nha!</p>
+            <button id="back-shop" class="big-btn">Quay Lại</button>
         </div>
 
         <footer>
@@ -91,7 +100,7 @@
     </div>
 
     <script>
-        // Đồng hồ chạy mượt
+        // Đồng hồ
         function updateClock() {
             const now = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
             document.getElementById('clock').textContent = now;
@@ -99,7 +108,7 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Thông Tin hiện/ẩn
+        // Thông Tin
         document.getElementById('status-btn').addEventListener('click', () => {
             document.getElementById('status-info').classList.toggle('hidden');
         });
@@ -110,17 +119,38 @@
             document.getElementById('quiz-screen').classList.remove('hidden');
         });
 
-        // Nghe Phát Âm (TTS hoạt động)
+        // Shop
+        document.getElementById('shop-btn').addEventListener('click', () => {
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('shop-screen').classList.remove('hidden');
+        });
+        document.getElementById('back-shop').addEventListener('click', () => {
+            document.getElementById('shop-screen').classList.add('hidden');
+            document.getElementById('start-screen').classList.remove('hidden');
+        });
+
+        // Ngôn Ngữ
+        document.getElementById('lang-btn').addEventListener('click', () => {
+            alert('Chọn ngôn ngữ: hiện tại là Tiếng Việt. Sắp thêm tiếng Anh đầy đủ nha!');
+        });
+
+        // Mode
+        document.getElementById('mode-btn').addEventListener('click', () => {
+            alert('Mode hiện tại: Dễ. Sắp thêm Bình Thường, Khó, Siêu Khó, Cực Khó với điểm thưởng khác nhau!');
+        });
+
+        // Phát Âm TTS
         document.getElementById('speak-btn').addEventListener('click', () => {
             const text = document.getElementById('question').textContent;
             if (text && 'speechSynthesis' in window) {
                 const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = 'vi-VN'; // Tiếng Việt mượt
+                utterance.lang = 'vi-VN';
                 utterance.rate = 0.9;
                 speechSynthesis.cancel();
                 speechSynthesis.speak(utterance);
             } else {
-                alert('Trình duyệt không hỗ trợ phát âm hoặc không có câu hỏi!');
+                alert('Trình duyệt không hỗ trợ TTS hoặc không có câu hỏi!');
             }
         });
 
