@@ -26,10 +26,10 @@
         <!-- Thông Tin hiện/ẩn -->
         <div id="status-info" class="info-box hidden">
             <h3>ℹ️ Thông Tin & Update</h3>
-            <p><strong>Phiên bản:</strong> Hoàn Hảo Cuối Cùng - Full + Fix (05/01/2026)</p>
+            <p><strong>Phiên bản:</strong> Update Ngôn Ngữ Học Qua Shop (05/01/2026)</p>
             <p><strong>Tác giả:</strong> Nguyễn Chí Dự 🇻🇳 (OWNER)</p>
             <p><strong>Gmail hỗ trợ:</strong> Herogoodboymc2024@gmail.com</p>
-            <p>Full tính năng, đổi ngôn ngữ học, mua shop đổi ngôn ngữ, nhiều câu hỏi, không lỗi!</p>
+            <p>Ngôn ngữ học phải mở khóa qua shop, mua quốc kỳ tự động đổi ngôn ngữ!</p>
         </div>
 
         <!-- Màn hình Start -->
@@ -162,7 +162,8 @@
             let currentMode = 'easy';
             let score = 0;
             let currentQuestion = 0;
-            let unlockedFlags = ['vn'];
+            let unlockedFlags = ['vn']; // quốc kỳ mở khóa
+            let unlockedLearnLangs = ['en', 'vi']; // ngôn ngữ học mở khóa (mặc định Anh + Việt)
 
             const modes = {
                 easy: { name: "Dễ", bonus: 10 },
@@ -204,7 +205,7 @@
                 id: 'id-ID'
             };
 
-            // Bộ câu hỏi (mẫu nhiều hơn)
+            // Bộ câu hỏi (nhiều hơn, mẫu cho từng ngôn ngữ)
             const questionSets = {
                 en: {
                     easy: [
@@ -215,11 +216,14 @@
                         { q: "Water là gì?", options: ["Sữa", "Nước", "Cà phê", "Trà"], a: 1 },
                         { q: "Book là gì?", options: ["Bút", "Sách", "Bàn", "Ghế"], a: 1 },
                         { q: "Family nghĩa là?", options: ["Bạn bè", "Gia đình", "Trường học", "Công việc"], a: 1 },
-                        { q: "Happy nghĩa là?", options: ["Buồn", "Vui vẻ", "Giận", "Sợ"], a: 1 }
+                        { q: "Happy nghĩa là?", options: ["Buồn", "Vui vẻ", "Giận", "Sợ"], a: 1 },
+                        { q: "Sun là mặt gì?", options: ["Trăng", "Mặt trời", "Sao", "Mây"], a: 1 },
+                        { q: "Good morning nghĩa là?", options: ["Chào buổi tối", "Chào buổi sáng", "Chào buổi trưa", "Tạm biệt"], a: 1 }
                     ],
                     normal: [
                         { q: "Capital of France is?", options: ["London", "Berlin", "Paris", "Madrid"], a: 2 },
-                        { q: "Yesterday nghĩa là?", options: ["Hôm qua", "Hôm nay", "Ngày mai", "Tuần tới"], a: 0 }
+                        { q: "Yesterday nghĩa là?", options: ["Hôm qua", "Hôm nay", "Ngày mai", "Tuần tới"], a: 0 },
+                        { q: "Beautiful nghĩa là?", options: ["Xấu xí", "Đẹp", "To", "Nhỏ"], a: 1 }
                     ],
                     hard: [
                         { q: "Past tense of 'go' is?", options: ["Goed", "Went", "Gone", "Going"], a: 1 }
@@ -234,22 +238,26 @@
                 ja: {
                     easy: [
                         { q: "Konnichiwa nghĩa là gì?", options: ["Tạm biệt", "Xin chào", "Cảm ơn", "Xin lỗi"], a: 1 },
-                        { q: "Arigatou nghĩa là?", options: ["Xin chào", "Tạm biệt", "Cảm ơn", "Xin lỗi"], a: 2 }
+                        { q: "Arigatou nghĩa là?", options: ["Xin chào", "Tạm biệt", "Cảm ơn", "Xin lỗi"], a: 2 },
+                        { q: "Sumimasen nghĩa là?", options: ["Cảm ơn", "Xin lỗi", "Xin chào", "Tạm biệt"], a: 1 }
                     ]
                 },
                 ko: {
                     easy: [
-                        { q: "Annyeonghaseyo nghĩa là gì?", options: ["Tạm biệt", "Xin chào", "Cảm ơn", "Xin lỗi"], a: 1 }
+                        { q: "Annyeonghaseyo nghĩa là gì?", options: ["Tạm biệt", "Xin chào", "Cảm ơn", "Xin lỗi"], a: 1 },
+                        { q: "Gamsahamnida nghĩa là?", options: ["Xin chào", "Tạm biệt", "Cảm ơn", "Xin lỗi"], a: 2 }
                     ]
                 },
                 vi: {
                     easy: [
-                        { q: "Hello nghĩa là gì trong tiếng Việt?", options: ["Tạm biệt", "Xin chào", "Cảm ơn", "Xin lỗi"], a: 1 }
+                        { q: "Hello nghĩa là gì trong tiếng Việt?", options: ["Tạm biệt", "Xin chào", "Cảm ơn", "Xin lỗi"], a: 1 },
+                        { q: "Apple nghĩa là quả gì trong tiếng Việt?", options: ["Cam", "Chuối", "Táo", "Xoài"], a: 2 }
                     ]
                 }
+                // Thêm các ngôn ngữ khác nếu cần sau
             };
 
-            let currentQuestions = questionSets.en.easy;
+            let currentQuestions = questionSets[currentLearnLang][currentMode] || questionSets.en.easy;
 
             function updateClock() {
                 const options = { timeZone: currentTimezone, hour: '2-digit', minute: '2-digit', second: '2-digit' };
@@ -425,40 +433,40 @@
                     const country = item.dataset.country;
                     const price = parseInt(item.dataset.price);
                     const langMap = {
-                        vn: { learn: 'vi', speak: 'vi' },
-                        us: { learn: 'en', speak: 'en' },
-                        gb: { learn: 'en', speak: 'en' },
-                        jp: { learn: 'ja', speak: 'ja' },
-                        kr: { learn: 'ko', speak: 'ko' },
-                        fr: { learn: 'fr', speak: 'fr' },
-                        de: { learn: 'de', speak: 'de' },
-                        it: { learn: 'it', speak: 'it' },
-                        cn: { learn: 'zh', speak: 'zh' },
-                        es: { learn: 'es', speak: 'es' },
-                        ru: { learn: 'ru', speak: 'ru' },
-                        th: { learn: 'th', speak: 'th' },
-                        id: { learn: 'id', speak: 'id' }
+                        vn: 'vi',
+                        us: 'en',
+                        gb: 'en',
+                        jp: 'ja',
+                        kr: 'ko',
+                        fr: 'fr',
+                        de: 'de',
+                        it: 'it',
+                        cn: 'zh',
+                        es: 'es',
+                        ru: 'ru',
+                        th: 'th',
+                        id: 'id'
                     };
-                    const langInfo = langMap[country] || { learn: 'en', speak: 'en' };
+                    const learnLang = langMap[country] || 'en';
 
                     if (unlockedFlags.includes(country)) {
-                        currentLearnLang = langInfo.learn;
-                        currentLang = langInfo.speak;
-                        currentQuestions = questionSets[currentLearnLang]?.[currentMode] || questionSets.en.easy;
                         currentTimezone = timezones[country] || timezones.vn;
                         updateClock();
-                        alert('Đã áp dụng quốc kỳ và đổi ngôn ngữ!');
+                        alert('Đã áp dụng quốc kỳ ' + country.toUpperCase() + '!');
                     } else if (score >= price) {
                         if (confirm(`Mua quốc kỳ ${country.toUpperCase()} với ${price} điểm?`)) {
                             score -= price;
                             unlockedFlags.push(country);
-                            currentLearnLang = langInfo.learn;
-                            currentLang = langInfo.speak;
+                            if (!unlockedLearnLangs.includes(learnLang)) {
+                                unlockedLearnLangs.push(learnLang);
+                            }
+                            currentLearnLang = learnLang;
+                            currentLang = learnLang;
                             currentQuestions = questionSets[currentLearnLang]?.[currentMode] || questionSets.en.easy;
                             currentTimezone = timezones[country] || timezones.vn;
                             updateClock();
                             updateScore();
-                            alert('Mua thành công! Ngôn ngữ đã đổi!');
+                            alert('Mua thành công! Đã mở khóa và đổi sang ngôn ngữ học mới! 🎉');
                             currentQuestion = 0;
                             loadQuestion();
                         }
@@ -519,7 +527,7 @@
                 document.getElementById('suggest-word').value = '';
             });
 
-            // Đổi Ngôn Ngữ Học
+            // Đổi Ngôn Ngữ Học - KIỂM TRA MỞ KHÓA
             document.getElementById('lang-learn-btn').addEventListener('click', () => {
                 document.getElementById('lang-learn-modal').classList.remove('hidden');
             });
@@ -529,14 +537,18 @@
             document.querySelectorAll('[data-learn-lang]').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const newLang = btn.dataset.learnLang;
-                    if (newLang !== currentLearnLang) {
-                        if (confirm('Bạn chấp nhận đổi sang ngôn ngữ khác? Bạn đồng ý chứ?')) {
-                            currentLearnLang = newLang;
-                            currentQuestions = questionSets[currentLearnLang]?.[currentMode] || questionSets.en.easy;
-                            alert('Đã đổi ngôn ngữ học sang ' + btn.textContent.trim() + '!');
-                            currentQuestion = 0;
-                            loadQuestion();
+                    if (unlockedLearnLangs.includes(newLang)) {
+                        if (newLang !== currentLearnLang) {
+                            if (confirm('Bạn chấp nhận đổi sang ngôn ngữ khác? Bạn đồng ý chứ?')) {
+                                currentLearnLang = newLang;
+                                currentQuestions = questionSets[currentLearnLang]?.[currentMode] || questionSets.en.easy;
+                                alert('Đã đổi ngôn ngữ học sang ' + btn.textContent.trim() + '!');
+                                currentQuestion = 0;
+                                loadQuestion();
+                            }
                         }
+                    } else {
+                        alert('Xin lỗi bạn nhiều! Bạn vẫn chưa mở khóa ngôn ngữ này. Vui lòng cày điểm và vào shop mở khóa nha! ❤️');
                     }
                     document.getElementById('lang-learn-modal').classList.add('hidden');
                 });
