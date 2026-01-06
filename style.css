@@ -1,157 +1,161 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #e0f7fa, #b2ebf2); /* Pastel xanh nhạt mượt */
+    background: linear-gradient(135deg, #f0fdfa, #ccfbf1); /* Xanh pastel dịu hơn, không chói */
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #333;
+    color: #1e293b;
 }
 
 .container {
     max-width: 900px;
     margin: 20px auto;
-    background: rgba(255, 255, 255, 0.25); /* Glassmorphism trong suốt */
+    background: rgba(255, 255, 255, 0.4);
     border-radius: 30px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    backdrop-filter: blur(15px); /* Frosted glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
 }
 
 header {
-    background: linear-gradient(90deg, #ff6b6b, #ff8e53);
+    background: linear-gradient(90deg, #14b8a6, #0d9488);
     color: white;
     text-align: center;
     padding: 40px 20px;
-    border-bottom: 5px solid rgba(255, 255, 255, 0.2);
 }
 
 header h1 {
     margin: 0;
-    font-size: 36px;
+    font-size: 34px;
     font-weight: 700;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .clock, .user-info, .subtitle {
-    font-size: 20px;
-    margin: 15px 0;
+    font-size: 19px;
+    margin: 12px 0;
 }
 
 .controls {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 18px;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 button {
     padding: 16px 32px;
     border: none;
     border-radius: 50px;
-    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    background: linear-gradient(45deg, #2dd4bf, #14b8a6);
     color: white;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3);
 }
 
 button:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(78, 205, 196, 0.6);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(20, 184, 166, 0.4);
 }
 
 .small-btn {
     padding: 10px 20px;
     font-size: 16px;
-    background: linear-gradient(45deg, #ffb800, #ff8c00);
-    box-shadow: 0 8px 20px rgba(255, 184, 0, 0.4);
+    background: linear-gradient(45deg, #fbbf24, #f59e0b);
 }
 
 .big-btn {
     padding: 20px 50px;
     font-size: 24px;
-    background: linear-gradient(45deg, #ffe66d, #ffbe0b);
-    color: #333;
-    box-shadow: 0 15px 40px rgba(255, 230, 109, 0.5);
+    background: linear-gradient(45deg, #fde68a, #fbbf24);
+    color: #1e293b;
 }
 
 .welcome-box {
     text-align: center;
     padding: 80px 40px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 30px;
     margin: 40px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 #question {
     font-size: 32px;
     text-align: center;
-    margin: 60px 30px;
-    color: #2c3e50;
+    margin: 50px 30px;
+    color: #0f172a;
     font-weight: 700;
+    line-height: 1.4;
+}
+
+.speak-controls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.speak-controls button {
+    margin: 10px;
+    padding: 14px 28px;
+    font-size: 18px;
+}
+
+#change-voice-btn {
+    background: linear-gradient(45deg, #10b981, #059669); /* Xanh lá dịu */
 }
 
 #options {
     display: grid;
-    gap: 25px;
-    padding: 30px;
+    gap: 20px;
+    padding: 20px 40px;
 }
 
 .option-btn {
-    padding: 25px;
-    font-size: 22px;
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s;
+    padding: 28px;
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #0f172a;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-weight: 600;
 }
 
 .option-btn:hover {
-    transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.6);
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
 .quiz-controls {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 18px;
     padding: 40px;
 }
 
 .quiz-controls button {
-    background: linear-gradient(45deg, #ffb800, #ff8c00);
-}
-
-.quiz-controls button:hover {
-    background: linear-gradient(45deg, #ff8c00, #ffb800);
+    background: linear-gradient(45deg, #f97316, #ea580c);
 }
 
 #result {
-    font-size: 32px;
+    font-size: 30px;
     text-align: center;
     margin: 40px;
-    color: #e74c3c;
     font-weight: bold;
+    min-height: 50px;
 }
 
 #score {
     font-size: 36px;
     text-align: center;
-    color: #2ecc71;
+    color: #059669;
     font-weight: bold;
 }
 
@@ -163,73 +167,63 @@ button:hover {
 
 .shop-item {
     padding: 30px;
-    background: linear-gradient(45deg, #ffd93d, #ff6b6b);
+    background: linear-gradient(45deg, #fbbf24, #f59e0b);
     border-radius: 25px;
     text-align: center;
     font-size: 24px;
     color: white;
-    box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
     cursor: pointer;
-    transition: all 0.4s;
 }
 
 .shop-item:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 footer {
-    background: rgba(44, 62, 80, 0.9);
+    background: #0f172a;
     padding: 40px;
     color: white;
     text-align: center;
-    backdrop-filter: blur(10px);
 }
 
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
 }
 
 .modal-content {
-    background: rgba(255, 255, 255, 0.3);
-    padding: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
     border-radius: 30px;
-    text-align: center;
     max-width: 500px;
     width: 90%;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+#voice-select {
+    width: 100%;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 15px;
+    background: white;
+    border: 1px solid #cbd5e1;
+    font-size: 18px;
 }
 
 .hidden {
     display: none !important;
 }
 
-/* RESPONSIVE */
 @media (max-width: 768px) {
     header h1 {
         font-size: 28px;
-    }
-    .controls {
-        flex-direction: column;
-        align-items: center;
-    }
-    button {
-        width: 80%;
-        margin: 10px 0;
     }
     #question {
         font-size: 26px;
     }
     .option-btn {
-        font-size: 20px;
+        font-size: 22px;
+        padding: 24px;
     }
 }
