@@ -409,4 +409,78 @@
         document.getElementById('change-voice-btn').addEventListener('click', () => {
             loadVoices();
             setTimeout(loadVoices, 300);
-            document.getElemen
+            document.getElementById('voice-modal').classList.remove('hidden');
+        });
+
+        document.getElementById('reload-voices').addEventListener('click', () => {
+            loadVoices();
+            setTimeout(loadVoices, 500);
+            alert('ĐÃ TẢI LẠI DANH SÁCH GIỌNG! Nếu vẫn chưa thấy, bấm lại lần nữa nha ❤️');
+        });
+
+        document.getElementById('close-voice').addEventListener('click', () => {
+            document.getElementById('voice-modal').classList.add('hidden');
+        });
+
+        document.getElementById('save-voice').addEventListener('click', () => {
+            const select = document.getElementById('voice-select');
+            const voices = speechSynthesis.getVoices();
+            if (voices.length === 0) {
+                alert('Chưa tải được giọng, bấm "TẢI LẠI DANH SÁCH GIỌNG" thử lại nha!');
+                return;
+            }
+            selectedVoice = voices[select.selectedIndex];
+            alert('ĐÃ LƯU GIỌNG: ' + selectedVoice.name);
+            document.getElementById('voice-modal').classList.add('hidden');
+        });
+
+        document.getElementById('speak-btn').addEventListener('click', () => {
+            const text = document.getElementById('question').textContent;
+            if (text && 'speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                    utterance.lang = selectedVoice.lang;
+                } else {
+                    utterance.lang = 'en-US';
+                }
+                utterance.rate = 0.9;
+                speechSynthesis.cancel();
+                speechSynthesis.speak(utterance);
+            }
+        });
+
+        // SHOP
+        document.getElementById('shop-btn').addEventListener('click', () => {
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('shop-screen').classList.remove('hidden');
+            updateScore();
+        });
+
+        document.getElementById('back-shop').addEventListener('click', () => {
+            document.getElementById('shop-screen').classList.add('hidden');
+            document.getElementById('start-screen').classList.remove('hidden');
+        });
+
+        document.querySelectorAll('.shop-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const skill = item.dataset.skill;
+                const price = parseInt(item.dataset.price);
+                if (score >= price) {
+                    if (confirm(`MUA ${skill} VỚI ${price} ĐIỂM?`)) {
+                        score -= price;
+                        activeMultiplier = parseInt(skill.substring(1));
+                        updateScore();
+                        alert(`MUA THÀNH CÔNG! ${skill} ÁP DỤNG CHO CÂU TIẾP THEO!`);
+                    }
+                } else {
+                    alert('KHÔNG ĐỦ ĐIỂM!');
+                }
+            });
+        });
+
+        updateScore();
+    </script>
+</body>
+</html>
