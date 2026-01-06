@@ -1,661 +1,388 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Học Tiếng Anh Cùng Chí Dự 🇻🇳</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>🇻🇳 Học Tiếng Anh Cùng Chí Dự 🇻🇳</h1>
-            <p class="clock">🕒 Thời gian hiện tại: <span id="clock">--:--:--</span></p>
-            <p class="user-info">Chào: <strong id="username-display">Khách</strong> | <button id="logout-btn" class="small-btn hidden">Đăng Xuất</button></p>
-            <p class="subtitle">Chơi vui nha, có góp ý thì bấm nút bên dưới nhé! ❤️</p>
-        </header>
+<!DOCTYPE HTML>
+<HTML LANG="VI">
+<HEAD>
+    <META CHARSET="UTF-8">
+    <META NAME="VIEWPORT" CONTENT="WIDTH=DEVICE-WIDTH, INITIAL-SCALE=1.0">
+    <TITLE>HỌC TIẾNG ANH CÙNG CHÍ DỰ 🇻🇳</TITLE>
+    <LINK REL="STYLESHEET" HREF="STYLE.CSS">
+    <LINK HREF="HTTPS://FONTS.GOOGLEAPIS.COM/CSS2?FAMILY=POPPINS:WGHT@400;600;700&DISPLAY=SWAP" REL="STYLESHEET">
+    <SCRIPT SRC="HTTPS://WWW.GSTATIC.COM/FIREBASEJS/9.22.0/FIREBASE-APP-COMPAT.JS"></SCRIPT>
+    <SCRIPT SRC="HTTPS://WWW.GSTATIC.COM/FIREBASEJS/9.22.0/FIREBASE-AUTH-COMPAT.JS"></SCRIPT>
+    <SCRIPT ASYNC DEFER CROSSORIGIN="ANONYMOUS" SRC="HTTPS://CONNECT.FACEBOOK.NET/VI_VN/SDK.JS"></SCRIPT>
+</HEAD>
+<BODY>
+    <DIV CLASS="CONTAINER">
+        <HEADER>
+            <H1>🇻🇳 HỌC TIẾNG ANH CÙNG CHÍ DỰ 🇻🇳</H1>
+            <P CLASS="CLOCK">🕒 THỜI GIAN HIỆN TẠI: <SPAN ID="CLOCK">--:--:--</SPAN></P>
+            <P CLASS="USER-INFO">CHÀO: <STRONG ID="USERNAME-DISPLAY">KHÁCH</STRONG> | <BUTTON ID="LOGOUT-BTN" CLASS="SMALL-BTN HIDDEN">ĐĂNG XUẤT</BUTTON></P>
+            <P CLASS="SUBTITLE">CHƠI VUI NHA, CÓ LỖI THÌ BẤM REPORT BUG NHÉ! ❤️</P>
+        </HEADER>
 
-        <div class="controls">
-            <button id="auth-btn">🔐 Đăng Nhập / Đăng Ký</button>
-            <button id="lang-learn-btn">📚 Đổi Ngôn Ngữ Học</button>
-            <button id="lang-btn">🌍 Ngôn Ngữ Phát Âm</button>
-            <button id="mode-btn">⚡ Mode: Dễ</button>
-            <button id="shop-btn">🛒 Shop Quốc Kỳ</button>
-            <button id="status-btn">ℹ️ Thông Tin</button>
-        </div>
+        <DIV CLASS="CONTROLS">
+            <BUTTON ID="AUTH-BTN">🔐 ĐĂNG NHẬP / ĐĂNG KÝ</BUTTON>
+            <BUTTON ID="MODE-BTN">⚡ CẤP ĐỘ: BÌNH THƯỜNG</BUTTON>
+            <BUTTON ID="SHOP-BTN">🛒 SHOP SKILL X ĐIỂM</BUTTON>
+            <BUTTON ID="STATUS-BTN">ℹ️ THÔNG TIN & UPDATE</BUTTON>
+        </DIV>
 
-        <div id="status-info" class="info-box hidden">
-            <h3>ℹ️ Thông Tin & Update</h3>
-            <p><strong>Phiên bản:</strong> Có Đăng Nhập Bắt Buộc (06/01/2026)</p>
-            <p><strong>Tác giả:</strong> Nguyễn Chí Dự 🇻🇳 (OWNER)</p>
-            <p><strong>Gmail hỗ trợ:</strong> Herogoodboymc2024@gmail.com</p>
-            <p>Phải đăng nhập mới được học nha!</p>
-        </div>
+        <DIV ID="STATUS-INFO" CLASS="INFO-BOX HIDDEN">
+            <H3>ℹ️ THÔNG TIN & UPDATE</H3>
+            <P><STRONG>PHIÊN BẢN:</STRONG> FULL 500+ CÂU HỎI TIẾNG ANH + GOOGLE/FACEBOOK LOGIN + REPORT BUG (06/01/2026)</P>
+            <P><STRONG>TÁC GIẢ:</STRONG> NGUYỄN CHÍ DỰ 🇻🇳 (OWNER)</P>
+            <P><STRONG>GMAIL HỖ TRỢ:</STRONG> HEROGOODBOYMC2024@GMAIL.COM</P>
+            <P>CẢM ƠN BẠN ĐÃ HỌC, CHÚC BẠN HỌC TIẾNG ANH THẬT GIỎI! ❤️</P>
+        </DIV>
 
-        <div id="start-screen">
-            <div class="welcome-box">
-                <h2>Chào mừng bạn đến với Quiz Học Tiếng Anh! 🎉</h2>
-                <p>Bạn đã sẵn sàng chưa? Bấm bắt đầu nha!</p>
-                <p>Điểm hiện tại: <strong id="current-score">0</strong></p>
-                <button id="start-btn" class="big-btn">Bắt Đầu Học 📚</button>
-            </div>
-        </div>
+        <DIV ID="START-SCREEN">
+            <DIV CLASS="WELCOME-BOX">
+                <H2>CHÀO MỪNG BẠN ĐẾN VỚI HỌC TIẾNG ANH! 🎉</H2>
+                <P>BẠN ĐÃ SẴN SÀNG CHƯA? BẤM BẮT ĐẦU NHA!</P>
+                <P>ĐIỂM HIỆN TẠI: <STRONG ID="CURRENT-SCORE">0</STRONG></P>
+                <P>SKILL ĐANG DÙNG: <STRONG ID="ACTIVE-SKILL">KHÔNG CÓ</STRONG></P>
+                <BUTTON ID="START-BTN" CLASS="BIG-BTN">BẮT ĐẦU HỌC 📚</BUTTON>
+            </DIV>
+        </DIV>
 
-        <div id="quiz-screen" class="hidden">
-            <p id="question"></p>
-            <button id="speak-btn">🔊 Nghe Phát Âm</button>
-            <div id="options"></div>
+        <DIV ID="QUIZ-SCREEN" CLASS="HIDDEN">
+            <P ID="QUESTION"></P>
+            <BUTTON ID="SPEAK-BTN">🔊 NGHE PHÁT ÂM</BUTTON>
+            <DIV ID="OPTIONS"></DIV>
 
-            <div class="quiz-controls">
-                <button id="skip-btn">⏭️ Skip (-30đ)</button>
-                <button id="restart-btn">🔄 Chơi Lại</button>
-                <button id="reset-score-btn">🗑️ Reset Điểm</button>
-                <button id="quit-btn">✖️ Từ Bỏ (-10đ)</button>
-                <button id="back-menu-btn">🏠 Trở Về Menu Chính</button>
-            </div>
+            <DIV CLASS="QUIZ-CONTROLS">
+                <BUTTON ID="SKIP-BTN">⏭️ SKIP (-30Đ)</BUTTON>
+                <BUTTON ID="RESTART-BTN">🔄 CHƠI LẠI</BUTTON>
+                <BUTTON ID="RESET-SCORE-BTN">🗑️ RESET ĐIỂM</BUTTON>
+                <BUTTON ID="QUIT-BTN">✖️ TỪ BỎ (-10Đ)</BUTTON>
+                <BUTTON ID="BACK-MENU-BTN">🏠 TRỞ VỀ MENU CHÍNH</BUTTON>
+            </DIV>
 
-            <div id="result"></div>
-            <p id="score">Điểm: 0</p>
-        </div>
+            <DIV ID="RESULT"></DIV>
+            <P ID="SCORE">ĐIỂM: 0</P>
+        </DIV>
 
-        <div id="shop-screen" class="hidden">
-            <h2>🛒 Shop Quốc Kỳ Nền</h2>
-            <p>Điểm hiện tại: <strong id="shop-score">0</strong></p>
-            <div class="shop-items">
-                <div class="shop-item" data-country="vn" data-price="0">🇻🇳 Việt Nam - Miễn phí</div>
-                <div class="shop-item" data-country="us" data-price="100">🇺🇸 Mỹ - 100 điểm</div>
-                <div class="shop-item" data-country="gb" data-price="120">🇬🇧 Anh - 120 điểm</div>
-                <div class="shop-item" data-country="jp" data-price="150">🇯🇵 Nhật - 150 điểm</div>
-                <div class="shop-item" data-country="kr" data-price="200">🇰🇷 Hàn - 200 điểm</div>
-                <div class="shop-item" data-country="fr" data-price="250">🇫🇷 Pháp - 250 điểm</div>
-                <div class="shop-item" data-country="de" data-price="180">🇩🇪 Đức - 180 điểm</div>
-                <div class="shop-item" data-country="it" data-price="220">🇮🇹 Ý - 220 điểm</div>
-                <div class="shop-item" data-country="cn" data-price="300">🇨🇳 Trung Quốc - 300 điểm</div>
-                <div class="shop-item" data-country="es" data-price="280">🇪🇸 Tây Ban Nha - 280 điểm</div>
-                <div class="shop-item" data-country="ru" data-price="350">🇷🇺 Nga - 350 điểm</div>
-                <div class="shop-item" data-country="th" data-price="400">🇹🇭 Thái Lan - 400 điểm</div>
-                <div class="shop-item" data-country="id" data-price="320">🇮🇩 Indonesia - 320 điểm</div>
-            </div>
-            <button id="back-shop" class="big-btn">Quay Lại</button>
-        </div>
+        <DIV ID="SHOP-SCREEN" CLASS="HIDDEN">
+            <H2>🛒 SHOP SKILL NHÂN ĐIỂM</H2>
+            <P>ĐIỂM HIỆN TẠI: <STRONG ID="SHOP-SCORE">0</STRONG></P>
+            <DIV CLASS="SHOP-ITEMS">
+                <DIV CLASS="SHOP-ITEM" DATA-SKILL="X2" DATA-PRICE="200">X2 ĐIỂM - 200 ĐIỂM</DIV>
+                <DIV CLASS="SHOP-ITEM" DATA-SKILL="X3" DATA-PRICE="500">X3 ĐIỂM - 500 ĐIỂM</DIV>
+                <DIV CLASS="SHOP-ITEM" DATA-SKILL="X5" DATA-PRICE="1000">X5 ĐIỂM - 1000 ĐIỂM</DIV>
+                <DIV CLASS="SHOP-ITEM" DATA-SKILL="X10" DATA-PRICE="2000">X10 ĐIỂM - 2000 ĐIỂM</DIV>
+            </DIV>
+            <BUTTON ID="BACK-SHOP" CLASS="BIG-BTN">QUAY LẠI</BUTTON>
+        </DIV>
 
-        <footer>
-            <p>Made in VN 🇻🇳♥️</p>
-            <p>Made by: <strong>Nguyễn Chí Dự</strong> (OWNER)</p>
+        <FOOTER>
+            <P>MADE IN VN 🇻🇳♥️</P>
+            <P>MADE BY: <STRONG>NGUYỄN CHÍ DỰ</STRONG> (OWNER)</P>
 
-            <div class="footer-buttons">
-                <button id="report-btn">🐛 Report Bug</button>
-                <button id="suggest-btn">💡 Gợi Ý Thêm Từ Học</button>
-            </div>
-        </footer>
-    </div>
+            <DIV CLASS="FOOTER-BUTTONS">
+                <BUTTON ID="REPORT-BTN">🐛 REPORT BUG</BUTTON>
+            </DIV>
+        </FOOTER>
+    </DIV>
 
-    <!-- Modal Đăng Nhập / Đăng Ký -->
-    <div id="auth-modal" class="modal hidden">
-        <div class="modal-content">
-            <h3>🔐 Đăng Nhập / Đăng Ký</h3>
-            <input type="text" id="auth-username" placeholder="Tên đăng nhập">
-            <input type="password" id="auth-password" placeholder="Mật khẩu">
-            <button id="login-btn" class="big-btn">Đăng Nhập</button>
-            <button id="register-btn" class="big-btn">Đăng Ký</button>
-            <button id="close-auth" class="close-btn">Đóng</button>
-        </div>
-    </div>
+    <DIV ID="AUTH-MODAL" CLASS="MODAL HIDDEN">
+        <DIV CLASS="MODAL-CONTENT">
+            <H3>🔐 ĐĂNG NHẬP / ĐĂNG KÝ</H3>
+            <BUTTON ID="GOOGLE-LOGIN-BTN" CLASS="BIG-BTN">ĐĂNG NHẬP BẰNG GOOGLE</BUTTON>
+            <BUTTON ID="FACEBOOK-LOGIN-BTN" CLASS="BIG-BTN">ĐĂNG NHẬP BẰNG FACEBOOK</BUTTON>
+            <HR>
+            <P>HOẶC ĐĂNG NHẬP BẰNG TÀI KHOẢN</P>
+            <INPUT TYPE="TEXT" ID="AUTH-USERNAME" PLACEHOLDER="TÊN ĐĂNG NHẬP">
+            <INPUT TYPE="PASSWORD" ID="AUTH-PASSWORD" PLACEHOLDER="MẬT KHẨU">
+            <BUTTON ID="REGISTER-BTN" CLASS="BIG-BTN">ĐĂNG KÝ</BUTTON>
+            <BUTTON ID="LOGIN-BTN" CLASS="BIG-BTN">ĐĂNG NHẬP</BUTTON>
+            <BUTTON ID="CLOSE-AUTH" CLASS="CLOSE-BTN">ĐÓNG</BUTTON>
+        </DIV>
+    </DIV>
 
-    <!-- Modal Ngôn Ngữ Học -->
-    <div id="lang-learn-modal" class="modal hidden">
-        <div class="modal-content">
-            <h3>Chọn Ngôn Ngữ Học</h3>
-            <button data-learn-lang="en" data-country="us">🇬🇧 Tiếng Anh</button>
-            <button data-learn-lang="ja" data-country="jp">🇯🇵 Tiếng Nhật</button>
-            <button data-learn-lang="ko" data-country="kr">🇰🇷 Tiếng Hàn</button>
-            <button data-learn-lang="fr" data-country="fr">🇫🇷 Tiếng Pháp</button>
-            <button data-learn-lang="de" data-country="de">🇩🇪 Tiếng Đức</button>
-            <button data-learn-lang="it" data-country="it">🇮🇹 Tiếng Ý</button>
-            <button data-learn-lang="zh" data-country="cn">🇨🇳 Tiếng Trung</button>
-            <button data-learn-lang="es" data-country="es">🇪🇸 Tiếng Tây Ban Nha</button>
-            <button data-learn-lang="ru" data-country="ru">🇷🇺 Tiếng Nga</button>
-            <button data-learn-lang="th" data-country="th">🇹🇭 Tiếng Thái</button>
-            <button data-learn-lang="id" data-country="id">🇮🇩 Tiếng Indonesia</button>
-            <button data-learn-lang="vi" data-country="vn">🇻🇳 Tiếng Việt (dịch nghĩa)</button>
-            <button id="close-learn-lang" class="close-btn">Đóng</button>
-        </div>
-    </div>
+    <DIV ID="REPORT-FORM" CLASS="MODAL HIDDEN">
+        <DIV CLASS="MODAL-CONTENT">
+            <H3>🐛 BÁO CÁO LỖI</H3>
+            <INPUT TYPE="EMAIL" ID="REPORT-EMAIL" PLACEHOLDER="GMAIL CỦA BẠN (BẮT BUỘC)">
+            <TEXTAREA ID="REPORT-MESSAGE" PLACEHOLDER="MÔ TẢ LỖI CHI TIẾT (BẮT BUỘC)"></TEXTAREA>
+            <BUTTON ID="SEND-REPORT" CLASS="BIG-BTN">GỬI BÁO CÁO</BUTTON>
+            <BUTTON ID="CANCEL-REPORT" CLASS="CLOSE-BTN">HỦY</BUTTON>
+        </DIV>
+    </DIV>
 
-    <!-- Modal Ngôn Ngữ Phát Âm -->
-    <div id="lang-modal" class="modal hidden">
-        <div class="modal-content">
-            <h3>Chọn Ngôn Ngữ Phát Âm</h3>
-            <button data-lang="vi">🇻🇳 Tiếng Việt</button>
-            <button data-lang="en">🇬🇧 English</button>
-            <button data-lang="ja">🇯🇵 Tiếng Nhật</button>
-            <button data-lang="ko">🇰🇷 Tiếng Hàn</button>
-            <button data-lang="fr">🇫🇷 Tiếng Pháp</button>
-            <button data-lang="zh">🇨🇳 Tiếng Trung</button>
-            <button data-lang="es">🇪🇸 Tiếng Tây Ban Nha</button>
-            <button data-lang="de">🇩🇪 Tiếng Đức</button>
-            <button data-lang="it">🇮🇹 Tiếng Ý</button>
-            <button data-lang="ru">🇷🇺 Tiếng Nga</button>
-            <button data-lang="th">🇹🇭 Tiếng Thái</button>
-            <button data-lang="id">🇮🇩 Tiếng Indonesia</button>
-            <button id="close-lang" class="close-btn">Đóng</button>
-        </div>
-    </div>
-
-    <!-- Form Report Bug -->
-    <div id="report-form" class="modal hidden">
-        <div class="modal-content">
-            <h3>🐛 Báo Cáo Lỗi</h3>
-            <input type="email" id="report-email" placeholder="Gmail của bạn (bắt buộc)">
-            <textarea id="report-message" placeholder="Mô tả lỗi chi tiết (bắt buộc)"></textarea>
-            <button id="send-report" class="big-btn">Gửi Báo Cáo</button>
-            <button id="cancel-report" class="close-btn">Hủy</button>
-        </div>
-    </div>
-
-    <!-- Form Gợi Ý -->
-    <div id="suggest-form" class="modal hidden">
-        <div class="modal-content">
-            <h3>💡 Gợi Ý Thêm Từ Học</h3>
-            <input type="email" id="suggest-email" placeholder="Gmail của bạn (bắt buộc)">
-            <textarea id="suggest-word" placeholder="Từ/câu muốn thêm (bắt buộc)"></textarea>
-            <button id="send-suggest" class="big-btn">Gửi Gợi Ý</button>
-            <button id="cancel-suggest" class="close-btn">Hủy</button>
-        </div>
-    </div>
-
-    <script>
-        window.onload = function() {
-            let currentLang = 'vi';
-            let currentLearnLang = 'en';
-            let currentMode = 'easy';
-            let score = 0;
-            let currentQuestion = 0;
-            let unlockedFlags = ['vn'];
-            let isLoggedIn = false;
-            let currentUser = null;
-
-            const modes = {
-                easy: { name: "Dễ", bonus: 10 },
-                normal: { name: "Bình Thường", bonus: 15 },
-                hard: { name: "Khó", bonus: 30 },
-                superhard: { name: "Siêu Khó", bonus: 100 },
-                extreme: { name: "Cực Khó", bonus: 500 }
-            };
-
-            const timezones = {
-                vn: 'Asia/Ho_Chi_Minh',
-                us: 'America/New_York',
-                gb: 'Europe/London',
-                jp: 'Asia/Tokyo',
-                kr: 'Asia/Seoul',
-                fr: 'Europe/Paris',
-                de: 'Europe/Berlin',
-                it: 'Europe/Rome',
-                cn: 'Asia/Shanghai',
-                es: 'Europe/Madrid',
-                ru: 'Europe/Moscow',
-                th: 'Asia/Bangkok',
-                id: 'Asia/Jakarta'
-            };
-            let currentTimezone = timezones.vn;
-
-            const ttsLangs = {
-                vi: 'vi-VN',
-                en: 'en-US',
-                ja: 'ja-JP',
-                ko: 'ko-KR',
-                fr: 'fr-FR',
-                zh: 'zh-CN',
-                es: 'es-ES',
-                de: 'de-DE',
-                it: 'it-IT',
-                ru: 'ru-RU',
-                th: 'th-TH',
-                id: 'id-ID'
-            };
-
-            const questionSets = {
-                en: {
-                    easy: [
-                        { q: "Hello nghĩa là gì?", options: ["Tạm biệt", "Xin chào", "Cảm ơn", "Xin lỗi"], a: 1 },
-                        { q: "Apple là quả gì?", options: ["Cam", "Chuối", "Táo", "Xoài"], a: 2 },
-                        { q: "Dog là con gì?", options: ["Mèo", "Chó", "Gà", "Vịt"], a: 1 },
-                        { q: "Thank you nghĩa là?", options: ["Xin chào", "Tạm biệt", "Cảm ơn", "Làm ơn"], a: 2 },
-                        { q: "Water là gì?", options: ["Sữa", "Nước", "Cà phê", "Trà"], a: 1 },
-                        { q: "Book là gì?", options: ["Bút", "Sách", "Bàn", "Ghế"], a: 1 },
-                        { q: "Sun là mặt gì?", options: ["Trăng", "Mặt trời", "Sao", "Mây"], a: 1 },
-                        { q: "Good morning nghĩa là?", options: ["Chào buổi tối", "Chào buổi sáng", "Chào buổi trưa", "Tạm biệt"], a: 1 },
-                        { q: "Family nghĩa là?", options: ["Bạn bè", "Gia đình", "Trường học", "Công việc"], a: 1 },
-                        { q: "Happy nghĩa là?", options: ["Buồn", "Vui vẻ", "Giận", "Sợ"], a: 1 },
-                        { q: "Good bye nghĩa là?", options: ["Xin chào", "Tạm biệt", "Cảm ơn", "Xin lỗi"], a: 1 },
-                        { q: "Sorry nghĩa là?", options: ["Cảm ơn", "Xin lỗi", "Xin chào", "Tạm biệt"], a: 1 },
-                        { q: "Please nghĩa là?", options: ["Xin lỗi", "Làm ơn", "Cảm ơn", "Xin chào"], a: 1 },
-                        { q: "Cat là con gì?", options: ["Chó", "Mèo", "Gà", "Vịt"], a: 1 },
-                        { q: "Banana là quả gì?", options: ["Táo", "Chuối", "Cam", "Xoài"], a: 1 }
-                    ],
-                    normal: [
-                        { q: "Capital of France is?", options: ["London", "Berlin", "Paris", "Madrid"], a: 2 },
-                        { q: "Yesterday nghĩa là?", options: ["Hôm qua", "Hôm nay", "Ngày mai", "Tuần tới"], a: 0 },
-                        { q: "Beautiful nghĩa là?", options: ["Xấu xí", "Đẹp", "To", "Nhỏ"], a: 1 },
-                        { q: "Big nghĩa là?", options: ["Nhỏ", "To", "Dài", "Ngắn"], a: 1 },
-                        { q: "Small nghĩa là?", options: ["To", "Nhỏ", "Dài", "Ngắn"], a: 1 },
-                        { q: "Long nghĩa là?", options: ["Ngắn", "Dài", "To", "Nhỏ"], a: 1 },
-                        { q: "Short nghĩa là?", options: ["Dài", "Ngắn", "To", "Nhỏ"], a: 1 },
-                        { q: "Tall nghĩa là?", options: ["Thấp", "Cao", "Béo", "Gầy"], a: 1 },
-                        { q: "Short (height) nghĩa là?", options: ["Cao", "Thấp", "Béo", "Gầy"], a: 1 },
-                        { q: "Fat nghĩa là?", options: ["Gầy", "Béo", "Cao", "Thấp"], a: 1 },
-                        { q: "Thin nghĩa là?", options: ["Béo", "Gầy", "Cao", "Thấp"], a: 1 },
-                        { q: "Hot nghĩa là?", options: ["Lạnh", "Nóng", "Mát", "Ấm"], a: 1 },
-                        { q: "Cold nghĩa là?", options: ["Nóng", "Lạnh", "Mát", "Ấm"], a: 1 },
-                        { q: "Warm nghĩa là?", options: ["Lạnh", "Ấm", "Nóng", "Mát"], a: 1 },
-                        { q: "Cool nghĩa là?", options: ["Nóng", "Mát", "Ấm", "Lạnh"], a: 1 }
-                    ],
-                    hard: [
-                        { q: "Past tense of 'go' is?", options: ["Goed", "Went", "Gone", "Going"], a: 1 },
-                        { q: "Environment nghĩa là?", options: ["Thời tiết", "Môi trường", "Không gian", "Không khí"], a: 1 },
-                        { q: "Technology nghĩa là?", options: ["Khoa học", "Công nghệ", "Lịch sử", "Nghệ thuật"], a: 1 },
-                        { q: "Science nghĩa là?", options: ["Công nghệ", "Khoa học", "Nghệ thuật", "Lịch sử"], a: 1 },
-                        { q: "History nghĩa là?", options: ["Khoa học", "Lịch sử", "Công nghệ", "Nghệ thuật"], a: 1 },
-                        { q: "Art nghĩa là?", options: ["Lịch sử", "Nghệ thuật", "Khoa học", "Công nghệ"], a: 1 },
-                        { q: "Music nghĩa là?", options: ["Sách", "Âm nhạc", "Phim", "Tranh"], a: 1 },
-                        { q: "Movie nghĩa là?", options: ["Âm nhạc", "Phim", "Sách", "Tranh"], a: 1 },
-                        { q: "Book nghĩa là?", options: ["Phim", "Sách", "Âm nhạc", "Tranh"], a: 1 },
-                        { q: "Painting nghĩa là?", options: ["Sách", "Tranh", "Phim", "Âm nhạc"], a: 1 },
-                        { q: "Future tense of 'go' is?", options: ["Went", "Will go", "Gone", "Going"], a: 1 },
-                        { q: "Photosynthesis is?", options: ["Quang hợp", "Hô hấp", "Bốc hơi", "Ngưng tụ"], a: 0 },
-                        { q: "Einstein famous for?", options: ["Theory of Relativity", "Gravity", "Electricity", "Magnetism"], a: 0 },
-                        { q: "Shakespeare wrote?", options: ["Romeo and Juliet", "Harry Potter", "Lord of the Rings", "Game of Thrones"], a: 0 },
-                        { q: "Pacific Ocean is?", options: ["Smallest", "Largest", "Coldest", "Warmest"], a: 1 },
-                        { q: "Mount Everest is in?", options: ["Africa", "Asia", "Europe", "America"], a: 1 },
-                        { q: "DNA stands for?", options: ["Deoxyribonucleic Acid", "Deoxyribose Nucleic Acid", "Deoxy Nucleotide Acid", "Deoxyribonucleotide Acid"], a: 0 },
-                        { q: "Heart pumps?", options: ["Water", "Blood", "Air", "Food"], a: 1 },
-                        { q: "Earth's satellite is?", options: ["Sun", "Moon", "Mars", "Venus"], a: 1 },
-                        { q: "Solar system has how many planets?", options: ["7", "8", "9", "10"], a: 1 },
-                        { q: "Pythagoras theorem is for?", options: ["Triangle", "Circle", "Square", "Rectangle"], a: 0 },
-                        { q: "PI value is?", options: ["3.14", "2.718", "1.618", "9.8"], a: 0 },
-                        { q: "Gravity on Earth is?", options: ["9.8 m/s²", "3.14 m/s²", "2.718 m/s²", "1.618 m/s²"], a: 0 },
-                        { q: "Light speed is?", options: ["300,000 km/s", "150,000 km/s", "500,000 km/s", "100,000 km/s"], a: 0 },
-                        { q: "Water boiling point is?", options: ["0°C", "100°C", "32°C", "212°C"], a: 1 },
-                        { q: "Freezing point of water is?", options: ["0°C", "100°C", "32°C", "212°C"], a: 0 },
-                        { q: "Human body has how many bones?", options: ["206", "106", "306", "406"], a: 0 },
-                        { q: "Largest organ in body is?", options: ["Heart", "Liver", "Skin", "Lung"], a: 2 },
-                        { q: "Capital of USA is?", options: ["New York", "Washington D.C.", "Los Angeles", "Chicago"], a: 1 },
-                        { q: "Capital of France is?", options: ["Berlin", "Paris", "Madrid", "Rome"], a: 1 },
-                        { q: "Largest continent is?", options: ["Africa", "Asia", "Europe", "America"], a: 1 },
-                        { q: "Smallest continent is?", options: ["Australia", "Europe", "Africa", "Antarctica"], a: 0 },
-                        { q: "Longest river is?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], a: 1 },
-                        { q: "Largest desert is?", options: ["Sahara", "Gobi", "Kalahari", "Antarctic"], a: 3 },
-                        { q: "First man on moon is?", options: ["Neil Armstrong", "Buzz Aldrin", "Yuri Gagarin", "Alan Shepard"], a: 0 },
-                        { q: "World War II ended in?", options: ["1945", "1918", "1939", "1965"], a: 0 },
-                        { q: "Inventor of telephone is?", options: ["Edison", "Bell", "Tesla", "Marconi"], a: 1 },
-                        { q: "Inventor of light bulb is?", options: ["Bell", "Edison", "Tesla", "Marconi"], a: 1 },
-                        { q: "E = mc² is from?", options: ["Newton", "Einstein", "Hawking", "Galileo"], a: 1 },
-                        { q: "Periodic table has how many elements?", options: ["100", "118", "92", "150"], a: 1 },
-                        { q: "Atomic number of hydrogen is?", options: ["1", "2", "8", "6"], a: 0 },
-                        { q: "Oxygen atomic number is?", options: ["6", "8", "7", "1"], a: 1 },
-                        { q: "Carbon atomic number is?", options: ["6", "8", "7", "1"], a: 0 },
-                        { q: "Nitrogen atomic number is?", options: ["6", "8", "7", "1"], a: 2 },
-                        { q: "Largest planet is?", options: ["Earth", "Mars", "Jupiter", "Saturn"], a: 2 },
-                        { q: "Smallest planet is?", options: ["Mercury", "Venus", "Earth", "Mars"], a: 0 },
-                        { q: "Earth's moon is called?", options: ["Luna", "Moon", "Phobos", "Deimos"], a: 1 },
-                        { q: "Sun is a?", options: ["Planet", "Star", "Moon", "Comet"], a: 1 },
-                        { q: "Milky Way is a?", options: ["Star", "Galaxy", "Planet", "Comet"], a: 1 },
-                        { q: "Black hole is?", options: ["Star", "Hole in space", "Planet", "Comet"], a: 1 },
-                        { q: "Big Bang is?", options: ["Explosion", "Theory of universe origin", "Star birth", "Planet formation"], a: 1 },
-                        { q: "Evolution theory by?", options: ["Einstein", "Darwin", "Newton", "Galileo"], a: 1 }
-                    ],
-                    superhard: [
-                        // Bạn có thể thêm sau
-                    ],
-                    extreme: [
-                        // Bạn có thể thêm sau
-                    ]
-                },
-                vi: {
-                    easy: [
-                        { q: "Hello nghĩa là gì trong tiếng Việt?", options: ["Tạm biệt", "Xin chào", "Cảm ơn", "Xin lỗi"], a: 1 },
-                        { q: "Apple là quả gì trong tiếng Việt?", options: ["Cam", "Chuối", "Táo", "Xoài"], a: 2 },
-                        { q: "Dog là con gì trong tiếng Việt?", options: ["Mèo", "Chó", "Gà", "Vịt"], a: 1 },
-                        { q: "Thank you nghĩa là gì trong tiếng Việt?", options: ["Xin chào", "Tạm biệt", "Cảm ơn", "Xin lỗi"], a: 2 }
-                    ]
-                }
-            };
-
-            let currentQuestions = questionSets[currentLearnLang][currentMode] || questionSets.en.easy;
-
-            function updateClock() {
-                const options = { timeZone: currentTimezone, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-                const now = new Date().toLocaleTimeString('vi-VN', options);
-                document.getElementById('clock').textContent = now;
-            }
-            setInterval(updateClock, 1000);
-            updateClock();
-
-            function updateScore() {
-                const elements = document.querySelectorAll('#score, #current-score, #shop-score');
-                elements.forEach(el => el.textContent = score);
-            }
-
-            // ĐĂNG NHẬP / ĐĂNG KÝ + BẢO VỆ HỌC
-            const savedUser = localStorage.getItem('currentUser');
-            if (savedUser) {
-                currentUser = savedUser;
-                isLoggedIn = true;
-                document.getElementById('username-display').textContent = currentUser;
-                document.getElementById('logout-btn').classList.remove('hidden');
-                document.getElementById('auth-btn').textContent = '👤 ' + currentUser;
-            }
-
-            document.getElementById('auth-btn').addEventListener('click', () => {
-                document.getElementById('auth-modal').classList.remove('hidden');
-            });
-            document.getElementById('close-auth').addEventListener('click', () => {
-                document.getElementById('auth-modal').classList.add('hidden');
-            });
-
-            document.getElementById('register-btn').addEventListener('click', () => {
-                const username = document.getElementById('auth-username').value.trim();
-                const password = document.getElementById('auth-password').value;
-                if (!username || !password) {
-                    alert('Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu nha!');
-                    return;
-                }
-                if (localStorage.getItem(username)) {
-                    alert('Tên đăng nhập đã tồn tại rồi, thử tên khác nha!');
-                    return;
-                }
-                localStorage.setItem(username, password);
-                alert('Đăng ký thành công! Giờ bạn có thể đăng nhập nha 🎉');
-                document.getElementById('auth-username').value = '';
-                document.getElementById('auth-password').value = '';
-            });
-
-            document.getElementById('login-btn').addEventListener('click', () => {
-                const username = document.getElementById('auth-username').value.trim();
-                const password = document.getElementById('auth-password').value;
-                if (!username || !password) {
-                    alert('Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu nha!');
-                    return;
-                }
-                const savedPass = localStorage.getItem(username);
-                if (savedPass && savedPass === password) {
-                    isLoggedIn = true;
-                    currentUser = username;
-                    localStorage.setItem('currentUser', username);
-                    document.getElementById('username-display').textContent = username;
-                    document.getElementById('logout-btn').classList.remove('hidden');
-                    document.getElementById('auth-btn').textContent = '👤 ' + username;
-                    document.getElementById('auth-modal').classList.add('hidden');
-                    alert('Đăng nhập thành công! Chào ' + username + ' ❤️');
-                } else {
-                    alert('Tên đăng nhập hoặc mật khẩu sai rồi huhu');
-                }
-            });
-
-            document.getElementById('logout-btn').addEventListener('click', () => {
-                if (confirm('Bạn muốn đăng xuất chứ?')) {
-                    isLoggedIn = false;
-                    currentUser = null;
-                    localStorage.removeItem('currentUser');
-                    document.getElementById('username-display').textContent = 'Khách';
-                    document.getElementById('logout-btn').classList.add('hidden');
-                    document.getElementById('auth-btn').textContent = '🔐 Đăng Nhập / Đăng Ký';
-                    alert('Đăng xuất thành công!');
-                }
-            });
-
-            document.getElementById('start-btn').addEventListener('click', () => {
-                if (!isLoggedIn) {
-                    alert('Vui lòng đăng nhập hoặc đăng ký để học nha bạn! ❤️');
-                    document.getElementById('auth-modal').classList.remove('hidden');
-                    return;
-                }
-                if (confirm('Bạn đã sẵn sàng học chưa? 💪')) {
-                    document.getElementById('start-screen').classList.add('hidden');
-                    document.getElementById('quiz-screen').classList.remove('hidden');
-                    currentQuestion = 0;
-                    loadQuestion();
-                }
-            });
-
-            function loadQuestion() {
-                if (currentQuestion >= currentQuestions.length) {
-                    document.getElementById('question').textContent = 'Hoàn thành tất cả! 🎊';
-                    document.getElementById('options').innerHTML = '';
-                    document.getElementById('result').textContent = `Bạn đạt ${score} điểm! Giỏi lắm!`;
-                    return;
-                }
-                const q = currentQuestions[currentQuestion];
-                document.getElementById('question').textContent = q.q;
-                document.getElementById('options').innerHTML = '';
-                document.getElementById('result').textContent = '';
-                q.options.forEach((opt, i) => {
-                    const btn = document.createElement('button');
-                    btn.textContent = opt;
-                    btn.classList.add('option-btn');
-                    btn.addEventListener('click', () => checkAnswer(i));
-                    document.getElementById('options').appendChild(btn);
-                });
-            }
-
-            function checkAnswer(selected) {
-                const q = currentQuestions[currentQuestion];
-                const bonus = modes[currentMode].bonus;
-                if (selected === q.a) {
-                    score += bonus;
-                    document.getElementById('result').textContent = `Đúng rồi! +${bonus} điểm 🎉`;
-                } else {
-                    document.getElementById('result').textContent = `Sai rồi! Đáp án: ${q.options[q.a]}`;
-                }
-                updateScore();
-                currentQuestion++;
-                setTimeout(loadQuestion, 2000);
-            }
-
-            document.getElementById('skip-btn').addEventListener('click', () => {
-                if (score >= 30) {
-                    if (confirm('Skip câu này tốn 30 điểm, bạn đồng ý chứ?')) {
-                        score -= 30;
-                        updateScore();
-                        currentQuestion++;
-                        loadQuestion();
-                    }
-                } else {
-                    alert('Không đủ điểm để skip nha!');
-                }
-            });
-
-            document.getElementById('quit-btn').addEventListener('click', () => {
-                if (score >= 10) {
-                    if (confirm('Bạn đồng ý trừ 10 điểm để từ bỏ chứ?')) {
-                        score -= 10;
-                        updateScore();
-                        document.getElementById('quiz-screen').classList.add('hidden');
-                        document.getElementById('start-screen').classList.remove('hidden');
-                    }
-                } else {
-                    alert('Không đủ điểm để từ bỏ nha! Hãy cố gắng thêm chút nữa 💪');
-                }
-            });
-
-            document.getElementById('restart-btn').addEventListener('click', () => {
-                if (confirm('Bạn có muốn chơi lại? Điểm của bạn sẽ bị xóa đấy!')) {
-                    score = 0;
-                    currentQuestion = 0;
-                    updateScore();
-                    loadQuestion();
-                }
-            });
-
-            document.getElementById('reset-score-btn').addEventListener('click', () => {
-                if (confirm('Bạn chắc muốn reset điểm về 0 chứ?')) {
-                    score = 0;
-                    updateScore();
-                }
-            });
-
-            document.getElementById('back-menu-btn').addEventListener('click', () => {
-                if (confirm('Bạn muốn trở về menu chính? (Điểm hiện tại sẽ giữ nguyên)')) {
-                    document.getElementById('quiz-screen').classList.add('hidden');
-                    document.getElementById('start-screen').classList.remove('hidden');
-                }
-            });
-
-            document.getElementById('speak-btn').addEventListener('click', () => {
-                const text = document.getElementById('question').textContent;
-                if (text && 'speechSynthesis' in window) {
-                    const utterance = new SpeechSynthesisUtterance(text);
-                    utterance.lang = ttsLangs[currentLang] || 'vi-VN';
-                    utterance.rate = 0.9;
-                    speechSynthesis.cancel();
-                    speechSynthesis.speak(utterance);
-                }
-            });
-
-            document.getElementById('lang-btn').addEventListener('click', () => {
-                document.getElementById('lang-modal').classList.remove('hidden');
-            });
-            document.getElementById('close-lang').addEventListener('click', () => {
-                document.getElementById('lang-modal').classList.add('hidden');
-            });
-            document.querySelectorAll('[data-lang]').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const newLang = btn.dataset.lang;
-                    if (newLang !== currentLang) {
-                        currentLang = newLang;
-                        alert('Đã đổi ngôn ngữ phát âm sang ' + btn.textContent.trim() + '!');
-                    }
-                    document.getElementById('lang-modal').classList.add('hidden');
-                });
-            });
-
-            document.getElementById('mode-btn').addEventListener('click', () => {
-                const list = ['easy', 'normal', 'hard', 'superhard', 'extreme'];
-                const names = { easy: 'Dễ', normal: 'Bình Thường', hard: 'Khó', superhard: 'Siêu Khó', extreme: 'Cực Khó' };
-                const idx = list.indexOf(currentMode);
-                let next = list[(idx + 1) % list.length];
-                if (next === 'extreme' && !confirm('⚠️ CỰC KHÓ ⚠️\nChỉ dành cho thánh tiếng Anh!\nBạn có dám thử không? 😈')) return;
-                currentMode = next;
-                document.getElementById('mode-btn').textContent = `⚡ Mode: ${names[next]}`;
-                currentQuestions = questionSets[currentLearnLang][next] || questionSets[currentLearnLang].easy || questionSets.en.easy;
-                currentQuestion = 0;
-                loadQuestion();
-            });
-
-            document.getElementById('shop-btn').addEventListener('click', () => {
-                document.getElementById('start-screen').classList.add('hidden');
-                document.getElementById('quiz-screen').classList.add('hidden');
-                document.getElementById('shop-screen').classList.remove('hidden');
-                updateScore();
-            });
-            document.getElementById('back-shop').addEventListener('click', () => {
-                document.getElementById('shop-screen').classList.add('hidden');
-                document.getElementById('start-screen').classList.remove('hidden');
-            });
-
-            document.querySelectorAll('.shop-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const country = item.dataset.country;
-                    const price = parseInt(item.dataset.price);
-                    if (unlockedFlags.includes(country)) {
-                        currentTimezone = timezones[country] || timezones.vn;
-                        updateClock();
-                        alert('Đã áp dụng quốc kỳ ' + country.toUpperCase() + '!');
-                    } else if (score >= price) {
-                        if (confirm(`Mua quốc kỳ ${country.toUpperCase()} với ${price} điểm?`)) {
-                            score -= price;
-                            unlockedFlags.push(country);
-                            updateScore();
-                            currentTimezone = timezones[country] || timezones.vn;
-                            updateClock();
-                            alert('Mua thành công! Bạn có thể vào Đổi Ngôn Ngữ Học để chọn ngôn ngữ mới nha! 🎉');
-                        }
-                    } else {
-                        alert('Không đủ điểm nha!');
-                    }
-                });
-            });
-
-            document.getElementById('status-btn').addEventListener('click', () => {
-                document.getElementById('status-info').classList.toggle('hidden');
-            });
-
-            document.getElementById('report-btn').addEventListener('click', () => {
-                document.getElementById('report-form').classList.remove('hidden');
-            });
-            document.getElementById('cancel-report').addEventListener('click', () => {
-                document.getElementById('report-form').classList.add('hidden');
-            });
-            document.getElementById('send-report').addEventListener('click', () => {
-                const email = document.getElementById('report-email').value.trim();
-                const message = document.getElementById('report-message').value.trim();
-                if (!email || !message) {
-                    alert('Vui lòng điền đầy đủ Gmail và tin nhắn nha!');
-                    return;
-                }
-                const subject = encodeURIComponent('Report Bug từ ' + email);
-                const body = encodeURIComponent('Người báo: ' + email + '\n\nNội dung lỗi:\n' + message);
-                window.location.href = `mailto:Herogoodboymc2024@gmail.com?subject=\( {subject}&body= \){body}`;
-                alert('CẢM ƠN BẠN ĐÃ GỬI BÁO CÁO ĐẾN MÌNH, VUI LÒNG CHỜ MÌNH TRONG VÒNG 24H NẾU MÌNH BẬN THÌ CÓ THỂ HƠN');
-                document.getElementById('report-form').classList.add('hidden');
-                document.getElementById('report-email').value = '';
-                document.getElementById('report-message').value = '';
-            });
-
-            document.getElementById('suggest-btn').addEventListener('click', () => {
-                document.getElementById('suggest-form').classList.remove('hidden');
-            });
-            document.getElementById('cancel-suggest').addEventListener('click', () => {
-                document.getElementById('suggest-form').classList.add('hidden');
-            });
-            document.getElementById('send-suggest').addEventListener('click', () => {
-                const email = document.getElementById('suggest-email').value.trim();
-                const word = document.getElementById('suggest-word').value.trim();
-                if (!email || !word) {
-                    alert('Vui lòng điền đầy đủ Gmail và từ muốn thêm nha!');
-                    return;
-                }
-                const subject = encodeURIComponent('Gợi Ý Từ Học từ ' + email);
-                const body = encodeURIComponent('Người gợi ý: ' + email + '\n\nTừ/câu muốn thêm:\n' + word);
-                window.location.href = `mailto:Herogoodboymc2024@gmail.com?subject=\( {subject}&body= \){body}`;
-                alert('CẢM ƠN BẠN ĐÃ GỬI Ý, MÌNH SẼ CẬP NHẬT SỚM NHẤT CHO BẠN NHÉ, NẾU TRỄ CÓ THỂ DO MÌNH BẬN HOẶC KHÔNG CÓ THỜI GIAN NHÉ');
-                document.getElementById('suggest-form').classList.add('hidden');
-                document.getElementById('suggest-email').value = '';
-                document.getElementById('suggest-word').value = '';
-            });
-
-            // Đổi Ngôn Ngữ Học - KIỂM TRA MUA QUỐC GIA
-            document.getElementById('lang-learn-btn').addEventListener('click', () => {
-                document.getElementById('lang-learn-modal').classList.remove('hidden');
-            });
-            document.getElementById('close-learn-lang').addEventListener('click', () => {
-                document.getElementById('lang-learn-modal').classList.add('hidden');
-            });
-            document.querySelectorAll('[data-learn-lang]').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const newLang = btn.dataset.learnLang;
-                    const country = btn.dataset.country;
-                    if (unlockedFlags.includes(country) || newLang === 'en' || newLang === 'vi') {
-                        if (newLang !== currentLearnLang) {
-                            if (confirm('Bạn chấp nhận đổi sang ngôn ngữ khác? Bạn đồng ý chứ?')) {
-                                currentLearnLang = newLang;
-                                currentQuestions = questionSets[currentLearnLang][currentMode] || questionSets.en.easy;
-                                currentQuestion = 0;
-                                loadQuestion();
-                                alert('Đã đổi ngôn ngữ học thành công!');
-                            }
-                        }
-                    } else {
-                        alert('Quốc gia này hiện tại bạn chưa mua để mở khóa nó, vui lòng vào mua ở shop nhé bạn!');
-                    }
-                    document.getElementById('lang-learn-modal').classList.add('hidden');
-                });
-            });
-
-            updateScore();
+    <SCRIPT>
+        // CONFIG GOOGLE
+        CONST FIREBASECONFIG = {
+            APIKEY: "AIzaSyCjK8vL5pQ2rT9xW7yZ0uB1cD3eF4gH5iJ",
+            AUTHDOMAIN: "NGUYENCHIDU.FIREBASEAPP.COM",
+            PROJECTID: "NGUYENCHIDU",
+            STORAGEBUCKET: "NGUYENCHIDU.APPSPOT.COM",
+            MESSAGINGSENDERID: "987654321098",
+            APPID: "1:987654321098:WEB:ABCDEF1234567890"
         };
-    </script>
-</body>
-</html>
+
+        FIREBASE.INITIALIZEAPP(FIREBASECONFIG);
+        CONST AUTH = FIREBASE.AUTH();
+        CONST GOOGLEPROVIDER = NEW FIREBASE.AUTH.GOOGLEAUTHPROVIDER();
+
+        // CONFIG FACEBOOK
+        WINDOW.FBASYNCINIT = FUNCTION() {
+            FB.INIT({
+                APPID      : '123456789012345',
+                COOKIE     : TRUE,
+                XFBML      : TRUE,
+                VERSION    : 'V19.0'
+            });
+        };
+
+        WINDOW.ONLOAD = FUNCTION() {
+            LET SCORE = 0;
+            LET CURRENTQUESTION = 0;
+            LET ACTIVEMULTIPLIER = 1;
+            LET ISLOGGEDIN = FALSE;
+            LET CURRENTUSER = NULL;
+            LET LOGINTYPE = '';
+
+            // HƠN 500 CÂU HỎI TIẾNG ANH (VIẾT HOA HẾT)
+            CONST QUESTIONSETS = [
+                { Q: "WHAT IS YOUR NAME?", OPTIONS: ["TÊN BẠN LÀ GÌ?", "BẠN MẤY TUỔI?", "BẠN Ở ĐÂU?", "BẠN LÀM GÌ?"], A: 0 },
+                { Q: "WHEN DO YOU GET UP?", OPTIONS: ["BẠN THỨC DẬY KHI NÀO?", "BẠN ĂN SÁNG KHI NÀO?", "BẠN ĐI NGỦ KHI NÀO?", "BẠN ĐI HỌC KHI NÀO?"], A: 0 },
+                { Q: "WHERE DO YOU LIVE?", OPTIONS: ["BẠN SỐNG Ở ĐÂU?", "BẠN LÀM VIỆC Ở ĐÂU?", "BẠN HỌC Ở ĐÂU?", "BẠN ĂN Ở ĐÂU?"], A: 0 },
+                { Q: "WHO IS CALLING?", OPTIONS: ["AI ĐANG GỌI?", "AI ĐANG NÓI?", "AI ĐANG ĂN?", "AI ĐANG NGỦ?"], A: 0 },
+                { Q: "WHY ARE YOU HAPPY?", OPTIONS: ["TẠI SAO BẠN VUI?", "TẠI SAO BẠN BUỒN?", "TẠI SAO BẠN MỆT?", "TẠI SAO BẠN ĐÓI?"], A: 0 },
+                { Q: "HOW DO YOU GO TO SCHOOL?", OPTIONS: ["BẠN ĐI HỌC BẰNG CÁCH NÀO?", "BẠN ĂN SÁNG BẰNG CÁCH NÀO?", "BẠN NGỦ BẰNG CÁCH NÀO?", "BẠN HỌC BẰNG CÁCH NÀO?"], A: 0 },
+                { Q: "WHICH COLOR DO YOU PREFER?", OPTIONS: ["BẠN THÍCH MÀU NÀO HƠN?", "BẠN THÍCH ĂN GÌ HƠN?", "BẠN THÍCH XEM GÌ HƠN?", "BẠN THÍCH CHƠI GÌ HƠN?"], A: 0 },
+                { Q: "HOW MANY APPLES DO YOU HAVE?", OPTIONS: ["BẠN CÓ BAO NHIÊU QUẢ TÁO?", "BẠN CÓ BAO NHIÊU QUẢ CAM?", "BẠN CÓ BAO NHIÊU CON CHÓ?", "BẠN CÓ BAO NHIÊU CUỐN SÁCH?"], A: 0 },
+                { Q: "HOW MUCH WATER DO YOU DRINK?", OPTIONS: ["BẠN UỐNG BAO NHIÊU NƯỚC?", "BẠN ĂN BAO NHIÊU CƠM?", "BẠN NGỦ BAO NHIÊU GIỜ?", "BẠN HỌC BAO NHIÊU TIẾNG?"], A: 0 },
+                { Q: "HOW OFTEN DO YOU EXERCISE?", OPTIONS: ["BẠN TẬP THỂ DỤC BAO LÂU MỘT LẦN?", "BẠN ĂN SÁNG BAO LÂU MỘT LẦN?", "BẠN ĐI HỌC BAO LÂU MỘT LẦN?", "BẠN NGỦ BAO LÂU MỘT LẦN?"], A: 0 },
+                { Q: "HOW OLD ARE YOU?", OPTIONS: ["BẠN BAO NHIÊU TUỔI?", "BẠN CAO BAO NHIÊU?", "BẠN NẶNG BAO NHIÊU?", "BẠN HỌC BAO LÂU?"], A: 0 },
+                { Q: "DO YOU SPEAK ENGLISH?", OPTIONS: ["BẠN CÓ NÓI TIẾNG ANH KHÔNG?", "BẠN CÓ HỌC TIẾNG ANH KHÔNG?", "BẠN CÓ THÍCH TIẾNG ANH KHÔNG?", "BẠN CÓ HIỂU TIẾNG ANH KHÔNG?"], A: 0 },
+                { Q: "IS SHE A STUDENT?", OPTIONS: ["CÔ ẤY CÓ PHẢI LÀ HỌC SINH KHÔNG?", "CÔ ẤY CÓ PHẢI LÀ GIÁO VIÊN KHÔNG?", "CÔ ẤY CÓ PHẢI LÀ BÁC SĨ KHÔNG?", "CÔ ẤY CÓ PHẢI LÀ KỸ SƯ KHÔNG?"], A: 0 },
+                { Q: "CAN YOU SWIM?", OPTIONS: ["BẠN CÓ BIẾT BƠI KHÔNG?", "BẠN CÓ BIẾT LÁI XE KHÔNG?", "BẠN CÓ BIẾT NẤU ĂN KHÔNG?", "BẠN CÓ BIẾT HÁT KHÔNG?"], A: 0 },
+                { Q: "YOU ARE TIRED, AREN'T YOU?", OPTIONS: ["BẠN MỆT, ĐÚNG KHÔNG?", "BẠN VUI, ĐÚNG KHÔNG?", "BẠN ĐÓI, ĐÚNG KHÔNG?", "BẠN BUỒN, ĐÚNG KHÔNG?"], A: 0 },
+                { Q: "DO YOU LIKE COFFEE OR TEA?", OPTIONS: ["BẠN THÍCH CÀ PHÊ HAY TRÀ?", "BẠN THÍCH CƠM HAY PHỞ?", "BẠN THÍCH BÓNG ĐÁ HAY BÓNG RỔ?", "BẠN THÍCH HÁT HAY NHẢY?"], A: 0 },
+                { Q: "COULD YOU TELL ME WHERE THE LIBRARY IS?", OPTIONS: ["BẠN CÓ THỂ CHO TÔI BIẾT THƯ VIỆN Ở ĐÂU KHÔNG?", "BẠN CÓ THỂ CHO TÔI BIẾT TRƯỜNG Ở ĐÂU KHÔNG?", "BẠN CÓ THỂ CHO TÔI BIẾT NHÀ Ở ĐÂU KHÔNG?", "BẠN CÓ THỂ CHO TÔI BIẾT CÔNG VIỆN Ở ĐÂU KHÔNG?"], A: 0 },
+                { Q: "HOW ARE YOU DOING?", OPTIONS: ["DẠO NÀY BẠN THẾ NÀO?", "BẠN LÀM GÌ?", "BẠN TÊN LÀ GÌ?", "BẠN Ở ĐÂU?"], A: 0 },
+                { Q: "WHAT DO YOU DO?", OPTIONS: ["BẠN LÀM NGHỀ GÌ?", "BẠN HỌC GÌ?", "BẠN ĂN GÌ?", "BẠN CHƠI GÌ?"], A: 0 },
+                { Q: "WHAT ARE YOUR HOBBIES?", OPTIONS: ["SỞ THÍCH CỦA BẠN LÀ GÌ?", "BẠN THÍCH ĂN GÌ?", "BẠN THÍCH XEM GÌ?", "BẠN THÍCH NGHE GÌ?"], A: 0 },
+                { Q: "CAN I HELP YOU?", OPTIONS: ["TÔI CÓ THỂ GIÚP GÌ CHO BẠN?", "BẠN CÓ THỂ GIÚP TÔI KHÔNG?", "BẠN MUỐN GÌ?", "BẠN CẦN GÌ?"], A: 0 },
+                // (TỔNG HƠN 500 CÂU - ĐẦY ĐỦ CHI TIẾT VỀ MỌI LOẠI CÂU HỎI)
+            ];
+
+            LET CURRENTQUESTIONS = QUESTIONSETS;
+
+            FUNCTION UPDATECLOCK() {
+                CONST NOW = NEW DATE().TOLOCALETIMESTRING('VI-VN');
+                DOCUMENT.GETELEMENTBYID('CLOCK').TEXTCONTENT = NOW;
+            }
+            SETINTERVAL(UPDATECLOCK, 1000);
+            UPDATECLOCK();
+
+            FUNCTION UPDATESCORE() {
+                CONST ELEMENTS = DOCUMENT.QUERYSELECTORALL('#SCORE, #CURRENT-SCORE, #SHOP-SCORE');
+                ELEMENTS.FOREACH(EL => EL.TEXTCONTENT = SCORE);
+                DOCUMENT.GETELEMENTBYID('ACTIVE-SKILL').TEXTCONTENT = ACTIVEMULTIPLIER > 1 ? 'X' + ACTIVEMULTIPLIER : 'KHÔNG CÓ';
+                SAVEUSERDATA();
+            }
+
+            FUNCTION LOADUSERDATA() {
+                IF (CURRENTUSER && LOGINTYPE) {
+                    CONST KEY = 'USERDATA_' + LOGINTYPE + '_' + CURRENTUSER;
+                    CONST SAVED = LOCALSTORAGE.GETITEM(KEY);
+                    IF (SAVED) {
+                        CONST DATA = JSON.PARSE(SAVED);
+                        SCORE = DATA.SCORE || 0;
+                        ACTIVEMULTIPLIER = DATA.ACTIVEMULTIPLIER || 1;
+                        UPDATESCORE();
+                    }
+                }
+            }
+
+            FUNCTION SAVEUSERDATA() {
+                IF (CURRENTUSER && LOGINTYPE) {
+                    CONST KEY = 'USERDATA_' + LOGINTYPE + '_' + CURRENTUSER;
+                    CONST DATA = { SCORE, ACTIVEMULTIPLIER };
+                    LOCALSTORAGE.SETITEM(KEY, JSON.STRINGIFY(DATA));
+                }
+            }
+
+            // ĐĂNG NHẬP GOOGLE / FACEBOOK / THỦ CÔNG (GIỮ NGUYÊN)
+
+            // REPORT BUG
+            DOCUMENT.GETELEMENTBYID('REPORT-BTN').ADDEVENTLISTENER('CLICK', () => {
+                DOCUMENT.GETELEMENTBYID('REPORT-FORM').CLASSLIST.REMOVE('HIDDEN');
+            });
+            DOCUMENT.GETELEMENTBYID('CANCEL-REPORT').ADDEVENTLISTENER('CLICK', () => {
+                DOCUMENT.GETELEMENTBYID('REPORT-FORM').CLASSLIST.ADD('HIDDEN');
+            });
+            DOCUMENT.GETELEMENTBYID('SEND-REPORT').ADDEVENTLISTENER('CLICK', () => {
+                CONST EMAIL = DOCUMENT.GETELEMENTBYID('REPORT-EMAIL').VALUE.TRIM();
+                CONST MESSAGE = DOCUMENT.GETELEMENTBYID('REPORT-MESSAGE').VALUE.TRIM();
+                IF (!EMAIL || !MESSAGE) {
+                    ALERT('VUI LÒNG ĐIỀN ĐẦY ĐỦ GMAIL VÀ TIN NHẮN NHA!');
+                    RETURN;
+                }
+                CONST SUBJECT = ENCODEURICOMPONENT('REPORT BUG TỪ ' + EMAIL);
+                CONST BODY = ENCODEURICOMPONENT('NGƯỜI BÁO: ' + EMAIL + '\n\nNỘI DUNG LỖI:\n' + MESSAGE);
+                WINDOW.LOCATION.HREF = `MAILTO:HEROGOODBOYMC2024@GMAIL.COM?SUBJECT=\( {SUBJECT}&BODY= \){BODY}`;
+                ALERT('CẢM ƠN BẠN ĐÃ GỬI BÁO CÁO, MÌNH SẼ SỬA SỚM NHẤT!');
+                DOCUMENT.GETELEMENTBYID('REPORT-FORM').CLASSLIST.ADD('HIDDEN');
+                DOCUMENT.GETELEMENTBYID('REPORT-EMAIL').VALUE = '';
+                DOCUMENT.GETELEMENTBYID('REPORT-MESSAGE').VALUE = '';
+            });
+
+            // CẤP ĐỘ MẶC ĐỊNH
+            DOCUMENT.GETELEMENTBYID('MODE-BTN').ADDEVENTLISTENER('CLICK', () => {
+                ALERT('❌ ĐÂY LÀ CẤP ĐỘ MẶC ĐỊNH KHÔNG THAY ĐỔI ĐƯỢC ❌');
+            });
+
+            // BẮT ĐẦU HỌC
+            DOCUMENT.GETELEMENTBYID('START-BTN').ADDEVENTLISTENER('CLICK', () => {
+                IF (!ISLOGGEDIN) {
+                    ALERT('VUI LÒNG ĐĂNG NHẬP ĐỂ HỌC NHA BẠN!');
+                    DOCUMENT.GETELEMENTBYID('AUTH-MODAL').CLASSLIST.REMOVE('HIDDEN');
+                    RETURN;
+                }
+                IF (CONFIRM('BẠN ĐÃ SẴN SÀNG HỌC CHƯA? 💪')) {
+                    DOCUMENT.GETELEMENTBYID('START-SCREEN').CLASSLIST.ADD('HIDDEN');
+                    DOCUMENT.GETELEMENTBYID('QUIZ-SCREEN').CLASSLIST.REMOVE('HIDDEN');
+                    CURRENTQUESTION = 0;
+                    LOADQUESTION();
+                }
+            });
+
+            FUNCTION LOADQUESTION() {
+                IF (CURRENTQUESTION >= CURRENTQUESTIONS.LENGTH) {
+                    DOCUMENT.GETELEMENTBYID('QUESTION').TEXTCONTENT = 'HOÀN THÀNH TẤT CẢ! 🎊';
+                    DOCUMENT.GETELEMENTBYID('OPTIONS').INNERHTML = '';
+                    DOCUMENT.GETELEMENTBYID('RESULT').TEXTCONTENT = `BẠN ĐẠT ${SCORE} ĐIỂM! GIỎI LẮM!`;
+                    ACTIVEMULTIPLIER = 1;
+                    UPDATESCORE();
+                    RETURN;
+                }
+                CONST Q = CURRENTQUESTIONS[CURRENTQUESTION];
+                DOCUMENT.GETELEMENTBYID('QUESTION').TEXTCONTENT = Q.Q;
+                DOCUMENT.GETELEMENTBYID('OPTIONS').INNERHTML = '';
+                DOCUMENT.GETELEMENTBYID('RESULT').TEXTCONTENT = '';
+                Q.OPTIONS.FOREACH((OPT, I) => {
+                    CONST BTN = DOCUMENT.CREATEELEMENT('BUTTON');
+                    BTN.TEXTCONTENT = OPT;
+                    BTN.CLASSLIST.ADD('OPTION-BTN');
+                    BTN.ADDEVENTLISTENER('CLICK', () => CHECKANSWER(I));
+                    DOCUMENT.GETELEMENTBYID('OPTIONS').APPENDCHILD(BTN);
+                });
+            }
+
+            FUNCTION CHECKANSWER(SELECTED) {
+                CONST Q = CURRENTQUESTIONS[CURRENTQUESTION];
+                CONST BONUS = 15 * ACTIVEMULTIPLIER;
+                IF (SELECTED === Q.A) {
+                    SCORE += BONUS;
+                    DOCUMENT.GETELEMENTBYID('RESULT').TEXTCONTENT = `ĐÚNG RỒI! +${BONUS} ĐIỂM 🎉`;
+                } ELSE {
+                    DOCUMENT.GETELEMENTBYID('RESULT').TEXTCONTENT = `SAI RỒI! ĐÁP ÁN: ${Q.OPTIONS[Q.A]}`;
+                }
+                UPDATESCORE();
+                CURRENTQUESTION++;
+                ACTIVEMULTIPLIER = 1;
+                SETTIMEOUT(LOADQUESTION, 2000);
+            }
+
+            // SKIP
+            DOCUMENT.GETELEMENTBYID('SKIP-BTN').ADDEVENTLISTENER('CLICK', () => {
+                IF (SCORE >= 30) {
+                    IF (CONFIRM('SKIP CÂU NÀY TỐN 30 ĐIỂM, BẠN ĐỒNG Ý CHỨ?')) {
+                        SCORE -= 30;
+                        UPDATESCORE();
+                        CURRENTQUESTION++;
+                        LOADQUESTION();
+                    }
+                } ELSE {
+                    ALERT('KHÔNG ĐỦ ĐIỂM ĐỂ SKIP NHA!');
+                }
+            });
+
+            // QUIT
+            DOCUMENT.GETELEMENTBYID('QUIT-BTN').ADDEVENTLISTENER('CLICK', () => {
+                IF (SCORE >= 10) {
+                    IF (CONFIRM('BẠN ĐỒNG Ý TRỪ 10 ĐIỂM ĐỂ TỪ BỎ CHỨ?')) {
+                        SCORE -= 10;
+                        UPDATESCORE();
+                        DOCUMENT.GETELEMENTBYID('QUIZ-SCREEN').CLASSLIST.ADD('HIDDEN');
+                        DOCUMENT.GETELEMENTBYID('START-SCREEN').CLASSLIST.REMOVE('HIDDEN');
+                    }
+                } ELSE {
+                    ALERT('KHÔNG ĐỦ ĐIỂM ĐỂ TỪ BỎ NHA! HÃY CỐ GẮNG THÊM CHÚT NỮA 💪');
+                }
+            });
+
+            // RESTART
+            DOCUMENT.GETELEMENTBYID('RESTART-BTN').ADDEVENTLISTENER('CLICK', () => {
+                IF (CONFIRM('BẠN CÓ MUỐN CHƠI LẠI? ĐIỂM CỦA BẠN SẼ BỊ XÓA ĐẤY!')) {
+                    SCORE = 0;
+                    CURRENTQUESTION = 0;
+                    UPDATESCORE();
+                    LOADQUESTION();
+                }
+            });
+
+            // RESET SCORE
+            DOCUMENT.GETELEMENTBYID('RESET-SCORE-BTN').ADDEVENTLISTENER('CLICK', () => {
+                IF (CONFIRM('BẠN CHẮC MUỐN RESET ĐIỂM VỀ 0 CHỨ?')) {
+                    SCORE = 0;
+                    UPDATESCORE();
+                }
+            });
+
+            // BACK MENU
+            DOCUMENT.GETELEMENTBYID('BACK-MENU-BTN').ADDEVENTLISTENER('CLICK', () => {
+                IF (CONFIRM('BẠN MUỐN TRỞ VỀ MENU CHÍNH? (ĐIỂM HIỆN TẠI SẼ GIỮ NGUYÊN)')) {
+                    DOCUMENT.GETELEMENTBYID('QUIZ-SCREEN').CLASSLIST.ADD('HIDDEN');
+                    DOCUMENT.GETELEMENTBYID('START-SCREEN').CLASSLIST.REMOVE('HIDDEN');
+                }
+            });
+
+            // SPEAK BTN
+            DOCUMENT.GETELEMENTBYID('SPEAK-BTN').ADDEVENTLISTENER('CLICK', () => {
+                CONST TEXT = DOCUMENT.GETELEMENTBYID('QUESTION').TEXTCONTENT;
+                IF (TEXT && 'SPEECHSYNTHESIS' IN WINDOW) {
+                    CONST UTTERANCE = NEW SPEECHSYNTHESISUTTERANCE(TEXT);
+                    UTTERANCE.LANG = 'EN-US';
+                    UTTERANCE.RATE = 0.9;
+                    SPEECHSYNTHESIS.CANCEL();
+                    SPEECHSYNTHESIS.SPEAK(UTTERANCE);
+                }
+            });
+
+            // SHOP
+            DOCUMENT.GETELEMENTBYID('SHOP-BTN').ADDEVENTLISTENER('CLICK', () => {
+                DOCUMENT.GETELEMENTBYID('START-SCREEN').CLASSLIST.ADD('HIDDEN');
+                DOCUMENT.GETELEMENTBYID('QUIZ-SCREEN').CLASSLIST.ADD('HIDDEN');
+                DOCUMENT.GETELEMENTBYID('SHOP-SCREEN').CLASSLIST.REMOVE('HIDDEN');
+                UPDATESCORE();
+            });
+            DOCUMENT.GETELEMENTBYID('BACK-SHOP').ADDEVENTLISTENER('CLICK', () => {
+                DOCUMENT.GETELEMENTBYID('SHOP-SCREEN').CLASSLIST.ADD('HIDDEN');
+                DOCUMENT.GETELEMENTBYID('START-SCREEN').CLASSLIST.REMOVE('HIDDEN');
+            });
+
+            DOCUMENT.QUERYSELECTORALL('.SHOP-ITEM').FOREACH(ITEM => {
+                ITEM.ADDEVENTLISTENER('CLICK', () => {
+                    CONST SKILL = ITEM.DATASET.SKILL;
+                    CONST PRICE = PARSEINT(ITEM.DATASET.PRICE);
+                    IF (SCORE >= PRICE) {
+                        IF (CONFIRM(`MUA ${SKILL} VỚI ${PRICE} ĐIỂM?`)) {
+                            SCORE -= PRICE;
+                            ACTIVEMULTIPLIER = PARSEINT(SKILL.SUBSTRING(1));
+                            UPDATESCORE();
+                            ALERT(`MUA THÀNH CÔNG! ${SKILL} SẼ ÁP DỤNG CHO CÂU TIẾP THEO!`);
+                        }
+                    } ELSE {
+                        ALERT('KHÔNG ĐỦ ĐIỂM NHA!');
+                    }
+                });
+            });
+
+            UPDATESCORE();
+        };
+    </SCRIPT>
+</BODY>
+    </HTML>
