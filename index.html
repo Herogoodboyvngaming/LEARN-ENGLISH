@@ -166,6 +166,7 @@
                 isLoggedIn = true;
                 document.getElementById('username-display').textContent = currentUser;
                 document.getElementById('logout-btn').classList.remove('hidden');
+                document.getElementById('auth-btn').classList.add('hidden'); // ẨN NÚT ĐĂNG NHẬP KHI ĐÃ LOGIN
             }
 
             if (currentUser) {
@@ -188,7 +189,7 @@
         }
 
         window.onload = function() {
-            loadUserData(); // Load điểm và tự động đăng nhập lại khi reload
+            loadUserData();
 
             updateScore();
         };
@@ -220,8 +221,9 @@
                 isLoggedIn = true;
                 document.getElementById('username-display').textContent = username;
                 document.getElementById('logout-btn').classList.remove('hidden');
+                document.getElementById('auth-btn').classList.add('hidden'); // ẨN NÚT ĐĂNG NHẬP KHI LOGIN THÀNH CÔNG
                 document.getElementById('auth-modal').classList.add('hidden');
-                saveUserData(); // Lưu để reload tự động đăng nhập lại
+                saveUserData();
                 loadUserData();
                 alert('ĐĂNG NHẬP THÀNH CÔNG! CHÀO ' + username + ' ❤️');
             } else {
@@ -240,6 +242,7 @@
                 updateScore();
                 document.getElementById('username-display').textContent = 'KHÁCH';
                 document.getElementById('logout-btn').classList.add('hidden');
+                document.getElementById('auth-btn').classList.remove('hidden'); // HIỆN LẠI NÚT ĐĂNG NHẬP KHI LOGOUT
             }
         });
 
@@ -375,7 +378,7 @@
             document.getElementById('start-screen').classList.remove('hidden');
         });
 
-        // TTS + THAY ĐỔI GIỌNG (SỬA LỖI HIỂN THỊ TÊN GIỌNG)
+        // TTS + THAY ĐỔI GIỌNG (SỬA LỖI LOAD GIỌNG + HIỂN THỊ TÊN)
         function loadVoices() {
             let voices = speechSynthesis.getVoices();
             const select = document.getElementById('voice-select');
@@ -383,8 +386,9 @@
             voices.forEach((voice, i) => {
                 const option = document.createElement('option');
                 option.value = i;
-                option.textContent = voice.name + ' (' + voice.lang + ')'; // SỬA LỖI Ở ĐÂY
-                if (voice.name.toLowerCase().includes('google') && voice.lang.includes('en')) option.selected = true;
+                option.textContent = voice.name + ' (' + voice.lang + ')'; // SỬA LỖI HIỂN THỊ TÊN GIỌNG
+                if (voice.lang.includes('vi') || voice.name.toLowerCase().includes('vietnam')) option.selected = true; // Ưu tiên giọng Việt Nam nếu có
+                else if (voice.name.toLowerCase().includes('google') && voice.lang.includes('en')) option.selected = true; // Hoặc chị Google US
                 select.appendChild(option);
             });
             if (voices.length > 0) selectedVoice = voices[select.selectedIndex] || voices[0];
@@ -393,6 +397,8 @@
         speechSynthesis.onvoiceschanged = loadVoices;
         loadVoices();
         setTimeout(loadVoices, 500);
+        setTimeout(loadVoices, 1000);
+        setTimeout(loadVoices, 2000); // Load nhiều lần để chắc có giọng trên mọi máy
 
         document.getElementById('change-voice-btn').addEventListener('click', () => {
             loadVoices();
