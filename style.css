@@ -1,37 +1,40 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #f0fdfa, #ccfbf1); /* Xanh pastel dịu, không chói */
+    background: linear-gradient(135deg, #e0f2fe, #c0e9e6); /* Pastel xanh lá dịu mắt */
     margin: 0;
-    padding: 0;
+    padding: 20px 0;
     min-height: 100vh;
-    color: #0f172a;
+    color: #1e293b;
 }
 
 .container {
-    max-width: 900px;
-    margin: 20px auto;
-    background: rgba(255, 255, 255, 0.45);
-    border-radius: 30px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    max-width: 420px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 35px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 header {
-    background: linear-gradient(90deg, #0891b2, #06b6d4);
+    background: linear-gradient(90deg, #0d9488, #14b8a6);
     color: white;
     text-align: center;
-    padding: 40px 20px;
+    padding: 35px 20px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 header h1 {
     margin: 0;
-    font-size: 34px;
+    font-size: 32px;
     font-weight: 700;
 }
 
 #question {
-    font-size: 34px;
+    font-size: 32px;
     text-align: center;
     margin: 60px 30px 40px;
     color: #0f172a;
@@ -41,103 +44,93 @@ header h1 {
 
 .speak-controls {
     text-align: center;
-    margin: 20px 0 40px;
+    margin: 20px 0 50px;
 }
 
 .speak-controls button {
-    margin: 0 12px;
-    padding: 15px 30px;
-    font-size: 19px;
+    margin: 0 15px;
+    padding: 16px 32px;
+    font-size: 20px;
     border-radius: 50px;
 }
 
 #change-voice-btn {
-    background: linear-gradient(45deg, #10b981, #059669); /* Xanh lá dịu nổi bật */
+    background: linear-gradient(45deg, #10b981, #059669);
 }
 
 #options {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 25px;
     padding: 0 40px;
 }
 
 .option-btn {
-    padding: 32px;
-    font-size: 28px;
-    background: rgba(255, 255, 255, 0.9);
+    padding: 35px;
+    font-size: 26px;
+    background: rgba(255, 255, 255, 0.85);
     color: #0f172a;
-    border-radius: 30px;
+    border-radius: 35px;
     border: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-    transition: all 0.3s ease;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
     font-weight: 600;
+    text-align: center;
 }
 
 .option-btn:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
     background: white;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
 }
 
 .quiz-controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    padding: 50px 30px;
+    padding: 40px;
 }
 
 .quiz-controls button {
     background: linear-gradient(45deg, #f97316, #ea580c);
-    padding: 15px 30px;
-    font-size: 19px;
+    padding: 18px;
+    font-size: 18px;
     border-radius: 50px;
 }
 
 #result {
     font-size: 32px;
     text-align: center;
-    margin: 40px;
+    margin: 40px 20px;
     font-weight: bold;
-    min-height: 60px;
 }
 
 #score {
-    font-size: 38px;
+    font-size: 40px;
     text-align: center;
     color: #059669;
     font-weight: bold;
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 .modal-content {
     background: rgba(255, 255, 255, 0.95);
-    padding: 40px;
-    border-radius: 30px;
+    padding: 50px;
+    border-radius: 35px;
 }
 
 #voice-select {
     width: 100%;
-    padding: 15px;
-    margin: 20px 0;
-    border-radius: 15px;
-    background: white;
-    border: 1px solid #cbd5e1;
-    font-size: 18px;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #a7f3d0;
+    font-size: 20px;
 }
 
-@media (max-width: 768px) {
-    #question {
-        font-size: 28px;
-        margin: 40px 20px;
-    }
-    .option-btn {
-        font-size: 24px;
-        padding: 28px;
-    }
-    .speak-controls button {
-        display: block;
-        width: 85%;
-        margin: 12px auto;
+@media (max-width: 480px) {
+    .quiz-controls {
+        grid-template-columns: 1fr;
     }
 }
