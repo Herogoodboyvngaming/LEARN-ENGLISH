@@ -1,24 +1,24 @@
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #f0fdfa, #ccfbf1); /* Xanh pastel dịu hơn, không chói */
+    background: linear-gradient(135deg, #f0fdfa, #ccfbf1); /* Xanh pastel dịu, không chói */
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    color: #1e293b;
+    color: #0f172a;
 }
 
 .container {
     max-width: 900px;
     margin: 20px auto;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.45);
     border-radius: 30px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
     overflow: hidden;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(10px);
 }
 
 header {
-    background: linear-gradient(90deg, #14b8a6, #0d9488);
+    background: linear-gradient(90deg, #0891b2, #06b6d4);
     color: white;
     text-align: center;
     padding: 40px 20px;
@@ -30,64 +30,10 @@ header h1 {
     font-weight: 700;
 }
 
-.clock, .user-info, .subtitle {
-    font-size: 19px;
-    margin: 12px 0;
-}
-
-.controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 18px;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.3);
-}
-
-button {
-    padding: 16px 32px;
-    border: none;
-    border-radius: 50px;
-    background: linear-gradient(45deg, #2dd4bf, #14b8a6);
-    color: white;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3);
-}
-
-button:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 35px rgba(20, 184, 166, 0.4);
-}
-
-.small-btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    background: linear-gradient(45deg, #fbbf24, #f59e0b);
-}
-
-.big-btn {
-    padding: 20px 50px;
-    font-size: 24px;
-    background: linear-gradient(45deg, #fde68a, #fbbf24);
-    color: #1e293b;
-}
-
-.welcome-box {
-    text-align: center;
-    padding: 80px 40px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 30px;
-    margin: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
 #question {
-    font-size: 32px;
+    font-size: 34px;
     text-align: center;
-    margin: 50px 30px;
+    margin: 60px 30px 40px;
     color: #0f172a;
     font-weight: 700;
     line-height: 1.4;
@@ -95,110 +41,79 @@ button:hover {
 
 .speak-controls {
     text-align: center;
-    margin: 20px 0;
+    margin: 20px 0 40px;
 }
 
 .speak-controls button {
-    margin: 10px;
-    padding: 14px 28px;
-    font-size: 18px;
+    margin: 0 12px;
+    padding: 15px 30px;
+    font-size: 19px;
+    border-radius: 50px;
 }
 
 #change-voice-btn {
-    background: linear-gradient(45deg, #10b981, #059669); /* Xanh lá dịu */
+    background: linear-gradient(45deg, #10b981, #059669); /* Xanh lá dịu nổi bật */
 }
 
 #options {
     display: grid;
-    gap: 20px;
-    padding: 20px 40px;
+    gap: 25px;
+    padding: 0 40px;
 }
 
 .option-btn {
-    padding: 28px;
-    font-size: 24px;
-    background: rgba(255, 255, 255, 0.8);
+    padding: 32px;
+    font-size: 28px;
+    background: rgba(255, 255, 255, 0.9);
     color: #0f172a;
-    border-radius: 25px;
+    border-radius: 30px;
     border: none;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     transition: all 0.3s ease;
     font-weight: 600;
 }
 
 .option-btn:hover {
     transform: translateY(-8px);
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    background: white;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
 }
 
 .quiz-controls {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 18px;
-    padding: 40px;
+    gap: 20px;
+    padding: 50px 30px;
 }
 
 .quiz-controls button {
     background: linear-gradient(45deg, #f97316, #ea580c);
+    padding: 15px 30px;
+    font-size: 19px;
+    border-radius: 50px;
 }
 
 #result {
-    font-size: 30px;
+    font-size: 32px;
     text-align: center;
     margin: 40px;
     font-weight: bold;
-    min-height: 50px;
+    min-height: 60px;
 }
 
 #score {
-    font-size: 36px;
+    font-size: 38px;
     text-align: center;
     color: #059669;
     font-weight: bold;
-}
-
-.shop-items {
-    display: grid;
-    gap: 25px;
-    padding: 40px;
-}
-
-.shop-item {
-    padding: 30px;
-    background: linear-gradient(45deg, #fbbf24, #f59e0b);
-    border-radius: 25px;
-    text-align: center;
-    font-size: 24px;
-    color: white;
-    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
-    cursor: pointer;
-}
-
-.shop-item:hover {
-    transform: scale(1.05);
-}
-
-footer {
-    background: #0f172a;
-    padding: 40px;
-    color: white;
-    text-align: center;
-}
-
-.modal {
-    background: rgba(0, 0, 0, 0.7);
+    margin: 20px 0;
 }
 
 .modal-content {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     padding: 40px;
     border-radius: 30px;
-    max-width: 500px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
 #voice-select {
@@ -211,19 +126,18 @@ footer {
     font-size: 18px;
 }
 
-.hidden {
-    display: none !important;
-}
-
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 28px;
-    }
     #question {
-        font-size: 26px;
+        font-size: 28px;
+        margin: 40px 20px;
     }
     .option-btn {
-        font-size: 22px;
-        padding: 24px;
+        font-size: 24px;
+        padding: 28px;
+    }
+    .speak-controls button {
+        display: block;
+        width: 85%;
+        margin: 12px auto;
     }
 }
