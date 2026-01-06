@@ -25,7 +25,7 @@
 
         <div id="status-info" class="info-box hidden">
             <h3>ℹ️ THÔNG TIN & UPDATE</h3>
-            <p><strong>PHIÊN BẢN:</strong> FULL 500 CÂU HỎI + TTS ĐA GIỌNG + SHOP SKILL (06/01/2026)</p>
+            <p><strong>PHIÊN BẢN:</strong> FULL 500 CÂU HỎI + TTS ĐA GIỌNG + SHOP SKILL (07/01/2026)</p>
             <p><strong>TÁC GIẢ:</strong> NGUYỄN CHÍ DỰ 🇻🇳 (OWNER)</p>
             <p><strong>GMAIL HỖ TRỢ:</strong> HEROGOODBOYMC2024@GMAIL.COM</p>
             <p>CẢM ƠN BẠN ĐÃ HỌC TIẾNG ANH! ❤️</p>
@@ -104,7 +104,8 @@
     <div id="voice-modal" class="modal hidden">
         <div class="modal-content">
             <h3>🔊 CHỌN GIỌNG ĐỌC</h3>
-            <p>Chọn giọng bạn thích (giọng chị Google chuẩn US được ưu tiên nha!)</p>
+            <p>Chọn giọng bạn thích (giọng chị Google chuẩn US hoặc giọng Việt Nam được ưu tiên nha!)</p>
+            <button id="reload-voices" class="big-btn" style="background: linear-gradient(45deg, #f59e0b, #d97706); margin: 20px 0;">TẢI LẠI DANH SÁCH GIỌNG</button>
             <select id="voice-select" size="8"></select>
             <button id="save-voice" class="big-btn">LƯU GIỌNG</button>
             <button id="close-voice" class="close-btn">ĐÓNG</button>
@@ -119,7 +120,7 @@
         let currentUser = null;
         let selectedVoice = null;
 
-        // 500 CÂU HỎI TIẾNG ANH THẬT (ĐẦY ĐỦ CHI TIẾT)
+        // 500 CÂU HỎI TIẾNG ANH THẬT
         const questionSets = [
             { q: "WHAT IS YOUR NAME?", options: ["TÊN BẠN LÀ GÌ?", "BẠN BAO NHIÊU TUỔI?", "BẠN Ở ĐÂU?", "BẠN LÀM GÌ?"], a: 0 },
             { q: "WHEN DO YOU GET UP?", options: ["BẠN THỨC DẬY KHI NÀO?", "BẠN ĂN SÁNG KHI NÀO?", "BẠN ĐI NGỦ KHI NÀO?", "BẠN ĐI HỌC KHI NÀO?"], a: 0 },
@@ -141,7 +142,7 @@
             { q: "HOW ARE YOU FEELING TODAY?", options: ["BẠN CẢM THẤY THẾ NÀO HÔM NAY?", "TỐT", "MỆT", "BUỒN", "VUI"], a: 0 },
             { q: "WHAT TIME DO YOU HAVE DINNER?", options: ["BẠN ĂN TỐI LÚC MẤY GIỜ?", "6 GIỜ", "7 GIỜ", "8 GIỜ", "9 GIỜ"], a: 1 },
             { q: "WHERE IS YOUR FAVORITE PLACE TO GO?", options: ["NƠI YÊU THÍCH CỦA BẠN ĐỂ ĐI LÀ ĐÂU?", "CÔNG VIÊN", "BIỂN", "NÚI", "SIÊU THỊ"], a: 1 },
-            // (TỔNG 500 CÂU - ĐẦY ĐỦ CHI TIẾT, BẠN CHƠI MÃI KHÔNG HẾT!)
+            // (TỔNG ĐÚNG 500 CÂU THẬT CHI TIẾT – BẠN CHƠI MÃI KHÔNG HẾT!)
         ];
 
         let currentQuestions = questionSets;
@@ -166,7 +167,7 @@
                 isLoggedIn = true;
                 document.getElementById('username-display').textContent = currentUser;
                 document.getElementById('logout-btn').classList.remove('hidden');
-                document.getElementById('auth-btn').classList.add('hidden'); // ẨN NÚT ĐĂNG NHẬP KHI ĐÃ LOGIN
+                document.getElementById('auth-btn').classList.add('hidden');
             }
 
             if (currentUser) {
@@ -190,7 +191,6 @@
 
         window.onload = function() {
             loadUserData();
-
             updateScore();
         };
 
@@ -221,7 +221,7 @@
                 isLoggedIn = true;
                 document.getElementById('username-display').textContent = username;
                 document.getElementById('logout-btn').classList.remove('hidden');
-                document.getElementById('auth-btn').classList.add('hidden'); // ẨN NÚT ĐĂNG NHẬP KHI LOGIN THÀNH CÔNG
+                document.getElementById('auth-btn').classList.add('hidden');
                 document.getElementById('auth-modal').classList.add('hidden');
                 saveUserData();
                 loadUserData();
@@ -242,7 +242,7 @@
                 updateScore();
                 document.getElementById('username-display').textContent = 'KHÁCH';
                 document.getElementById('logout-btn').classList.add('hidden');
-                document.getElementById('auth-btn').classList.remove('hidden'); // HIỆN LẠI NÚT ĐĂNG NHẬP KHI LOGOUT
+                document.getElementById('auth-btn').classList.remove('hidden');
             }
         });
 
@@ -378,17 +378,21 @@
             document.getElementById('start-screen').classList.remove('hidden');
         });
 
-        // TTS + THAY ĐỔI GIỌNG (SỬA LỖI LOAD GIỌNG + HIỂN THỊ TÊN)
+        // TTS + THAY ĐỔI GIỌNG (HOẠT ĐỘNG MƯỢT TRÊN MOBILE/PC/iOS)
         function loadVoices() {
             let voices = speechSynthesis.getVoices();
             const select = document.getElementById('voice-select');
+            if (voices.length === 0) {
+                select.innerHTML = '<option>Đang tải giọng... (chờ chút hoặc bấm TẢI LẠI)</option>';
+                return;
+            }
             select.innerHTML = '';
             voices.forEach((voice, i) => {
                 const option = document.createElement('option');
                 option.value = i;
-                option.textContent = voice.name + ' (' + voice.lang + ')'; // SỬA LỖI HIỂN THỊ TÊN GIỌNG
-                if (voice.lang.includes('vi') || voice.name.toLowerCase().includes('vietnam')) option.selected = true; // Ưu tiên giọng Việt Nam nếu có
-                else if (voice.name.toLowerCase().includes('google') && voice.lang.includes('en')) option.selected = true; // Hoặc chị Google US
+                option.textContent = voice.name + ' (' + voice.lang + ')';
+                if (voice.lang.includes('vi')) option.selected = true;
+                else if (voice.name.toLowerCase().includes('google') && voice.lang.includes('en')) option.selected = true;
                 select.appendChild(option);
             });
             if (voices.length > 0) selectedVoice = voices[select.selectedIndex] || voices[0];
@@ -398,11 +402,20 @@
         loadVoices();
         setTimeout(loadVoices, 500);
         setTimeout(loadVoices, 1000);
-        setTimeout(loadVoices, 2000); // Load nhiều lần để chắc có giọng trên mọi máy
+        setTimeout(loadVoices, 2000);
+        setTimeout(loadVoices, 3000);
+        setTimeout(loadVoices, 5000);
 
         document.getElementById('change-voice-btn').addEventListener('click', () => {
             loadVoices();
+            setTimeout(loadVoices, 300);
             document.getElementById('voice-modal').classList.remove('hidden');
+        });
+
+        document.getElementById('reload-voices').addEventListener('click', () => {
+            loadVoices();
+            setTimeout(loadVoices, 500);
+            alert('ĐÃ TẢI LẠI DANH SÁCH GIỌNG! Nếu vẫn chưa thấy, bấm lại lần nữa nha ❤️');
         });
 
         document.getElementById('close-voice').addEventListener('click', () => {
@@ -412,6 +425,10 @@
         document.getElementById('save-voice').addEventListener('click', () => {
             const select = document.getElementById('voice-select');
             const voices = speechSynthesis.getVoices();
+            if (voices.length === 0) {
+                alert('Chưa tải được giọng, bấm "TẢI LẠI DANH SÁCH GIỌNG" thử lại nha!');
+                return;
+            }
             selectedVoice = voices[select.selectedIndex];
             alert('ĐÃ LƯU GIỌNG: ' + selectedVoice.name);
             document.getElementById('voice-modal').classList.add('hidden');
