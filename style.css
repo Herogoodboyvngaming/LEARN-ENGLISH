@@ -1,18 +1,19 @@
-/* style.css - Update mới cho giao diện đẹp, thoáng, mượt trên mobile & PC */
-
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #e0f7fa, #c7f9e8);
+    background: linear-gradient(135deg, #e0f7fa, #c7f9e8); /* Pastel xanh dịu mắt */
     margin: 0;
-    padding: 0;
+    padding: 20px 0;
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     color: #0f172a;
 }
 
 .container {
     width: 100%;
     max-width: 480px;
-    margin: 15px auto;
+    margin: 0 auto;
     background: rgba(255, 255, 255, 0.85);
     border-radius: 40px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
@@ -23,39 +24,66 @@ header {
     background: linear-gradient(90deg, #0ea5e9, #22d3ee);
     color: white;
     text-align: center;
-    padding: 50px 20px 40px; /* Tăng padding trên dưới */
+    padding: 40px 20px;
 }
 
 header h1 {
-    margin: 0 0 15px;
-    font-size: 38px; /* Tăng kích thước tiêu đề */
+    margin: 0;
+    font-size: 32px;
     font-weight: 700;
-    line-height: 1.2;
 }
 
 .clock, .user-info, .subtitle {
-    font-size: 20px;
-    margin: 12px 0;
-}
-
-.user-info {
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 18px;
+    margin: 10px 0;
 }
 
 .controls {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 18px;
-    padding: 35px 20px;
-    background: rgba(255, 255, 255, 0.6);
+    gap: 15px;
+    padding: 30px;
+}
+
+button {
+    padding: 16px 32px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #22d3ee, #0ea5e9);
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);
+}
+
+button:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4);
+}
+
+.big-btn {
+    padding: 20px 50px;
+    font-size: 24px;
+    background: linear-gradient(45deg, #fde68a, #fbbf24);
+    color: #0f172a;
+}
+
+.welcome-box {
+    text-align: center;
+    padding: 70px 40px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 40px;
+    margin: 40px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 #question {
-    font-size: 38px; /* Tăng to hơn, dễ đọc */
+    font-size: 32px;
     text-align: center;
-    margin: 80px 40px 60px; /* Tăng khoảng cách trên dưới */
+    margin: 70px 40px 50px;
     color: #0f172a;
     font-weight: 700;
     line-height: 1.5;
@@ -63,15 +91,14 @@ header h1 {
 
 .speak-controls {
     text-align: center;
-    margin: 30px 0 70px; /* Tăng khoảng cách dưới để thoáng */
+    margin: 0 0 50px;
 }
 
 .speak-controls button {
-    margin: 15px 20px; /* Tăng khoảng cách giữa 2 nút */
-    padding: 18px 40px;
-    font-size: 22px;
+    margin: 0 15px;
+    padding: 16px 35px;
+    font-size: 20px;
     border-radius: 50px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 #change-voice-btn {
@@ -81,18 +108,18 @@ header h1 {
 #options {
     display: flex;
     flex-direction: column;
-    gap: 35px; /* Tăng khoảng cách giữa các đáp án */
-    padding: 0 50px 60px;
+    gap: 30px;
+    padding: 0 50px;
 }
 
 .option-btn {
-    padding: 40px;
-    font-size: 28px;
+    padding: 35px;
+    font-size: 26px;
     background: white;
     color: #0f172a;
     border-radius: 35px;
     border: none;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
     transition: all 0.4s ease;
     font-weight: 600;
     text-align: center;
@@ -100,55 +127,84 @@ header h1 {
 
 .option-btn:hover {
     transform: translateY(-10px);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
 }
 
 .quiz-controls {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    padding: 60px 40px 80px; /* Tăng khoảng cách dưới */
+    gap: 25px;
+    padding: 50px 40px;
 }
 
 .quiz-controls button {
     background: linear-gradient(45deg, #fb923c, #f97316);
-    padding: 20px;
-    font-size: 20px;
+    padding: 18px;
+    font-size: 19px;
     border-radius: 50px;
 }
 
 #result {
-    font-size: 34px;
+    font-size: 32px;
     text-align: center;
-    margin: 60px 40px;
+    margin: 50px 40px;
     font-weight: bold;
-    min-height: 70px;
+    min-height: 60px;
 }
 
 #score {
-    font-size: 42px;
+    font-size: 40px;
     text-align: center;
     color: #16a34a;
     font-weight: bold;
-    margin: 40px 0;
+    margin: 30px 0;
+}
+
+.shop-items {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px;
+}
+
+.shop-item {
+    padding: 35px;
+    background: linear-gradient(45deg, #fbbf24, #f59e0b);
+    border-radius: 35px;
+    text-align: center;
+    font-size: 26px;
+    color: white;
+    box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
+    cursor: pointer;
+}
+
+.shop-item:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    background: #0f172a;
+    padding: 40px;
+    color: white;
+    text-align: center;
 }
 
 .modal-content {
     background: white;
-    padding: 60px 40px;
+    padding: 50px;
     border-radius: 40px;
     text-align: center;
-    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 #voice-select {
     width: 100%;
-    padding: 25px;
-    margin: 40px 0;
-    border-radius: 25px;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 20px;
     background: #f0fdfa;
     border: 1px solid #86efac;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .hidden {
@@ -160,16 +216,13 @@ header h1 {
         margin: 10px;
         border-radius: 30px;
     }
-    header h1 {
-        font-size: 32px;
-    }
     #question {
-        font-size: 30px;
-        margin: 60px 30px 50px;
+        font-size: 28px;
+        margin: 50px 30px 40px;
     }
     .option-btn {
-        font-size: 26px;
-        padding: 35px;
+        font-size: 24px;
+        padding: 30px;
     }
     .quiz-controls {
         grid-template-columns: 1fr;
@@ -177,6 +230,6 @@ header h1 {
     .speak-controls button {
         display: block;
         width: 85%;
-        margin: 20px auto;
+        margin: 15px auto;
     }
 }
